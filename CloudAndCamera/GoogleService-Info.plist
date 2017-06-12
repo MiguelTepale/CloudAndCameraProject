@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>24408228918-8ijbqid0r5ju80uppekfj68d70o3mvei.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.24408228918-8ijbqid0r5ju80uppekfj68d70o3mvei</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBCOSpCceCf_DzZ39TUFcAsebhfgMDD7PU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>24408228918</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Miguel-Tepale.CloudAndCamera</string>
+	<key>PROJECT_ID</key>
+	<string>cloudandcamera-8f82b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cloudandcamera-8f82b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:24408228918:ios:8656d9e0d6dd0d30</string>
+	<key>DATABASE_URL</key>
+	<string>https://cloudandcamera-8f82b.firebaseio.com</string>
+</dict>
+</plist>

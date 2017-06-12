@@ -12,9 +12,13 @@
 		8C17C65A1EEF3447000ACC87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C17C6581EEF3447000ACC87 /* Main.storyboard */; };
 		8C17C65C1EEF3447000ACC87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C17C65B1EEF3447000ACC87 /* Assets.xcassets */; };
 		8C17C65F1EEF3447000ACC87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C17C65D1EEF3447000ACC87 /* LaunchScreen.storyboard */; };
+		8C17C6671EEF57CE000ACC87 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C17C6661EEF57CE000ACC87 /* GoogleService-Info.plist */; };
+		EA8DFF36E3958ED9713B216D /* Pods_CloudAndCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F0037C25316D2FEA70AAD8 /* Pods_CloudAndCamera.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D6033C8A5CA89C1199926E0 /* Pods-CloudAndCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudAndCamera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CloudAndCamera/Pods-CloudAndCamera.debug.xcconfig"; sourceTree = "<group>"; };
+		60F0037C25316D2FEA70AAD8 /* Pods_CloudAndCamera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudAndCamera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C17C6511EEF3447000ACC87 /* CloudAndCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudAndCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C17C6541EEF3447000ACC87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C17C6561EEF3447000ACC87 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +26,8 @@
 		8C17C65B1EEF3447000ACC87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C17C65E1EEF3447000ACC87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C17C6601EEF3447000ACC87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C17C6661EEF57CE000ACC87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F17E9A4AF6265010624ED6C1 /* Pods-CloudAndCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudAndCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-CloudAndCamera/Pods-CloudAndCamera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA8DFF36E3958ED9713B216D /* Pods_CloudAndCamera.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E49C210AD2BD1FD0F9F1C3E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1D6033C8A5CA89C1199926E0 /* Pods-CloudAndCamera.debug.xcconfig */,
+				F17E9A4AF6265010624ED6C1 /* Pods-CloudAndCamera.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		80164E84219AA398B6E42AC3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				60F0037C25316D2FEA70AAD8 /* Pods_CloudAndCamera.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8C17C6481EEF3447000ACC87 = {
 			isa = PBXGroup;
 			children = (
 				8C17C6531EEF3447000ACC87 /* CloudAndCamera */,
 				8C17C6521EEF3447000ACC87 /* Products */,
+				6E49C210AD2BD1FD0F9F1C3E /* Pods */,
+				80164E84219AA398B6E42AC3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +86,7 @@
 				8C17C65B1EEF3447000ACC87 /* Assets.xcassets */,
 				8C17C65D1EEF3447000ACC87 /* LaunchScreen.storyboard */,
 				8C17C6601EEF3447000ACC87 /* Info.plist */,
+				8C17C6661EEF57CE000ACC87 /* GoogleService-Info.plist */,
 			);
 			path = CloudAndCamera;
 			sourceTree = "<group>";
@@ -71,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C17C6631EEF3447000ACC87 /* Build configuration list for PBXNativeTarget "CloudAndCamera" */;
 			buildPhases = (
+				903BDFDAC43DB0990544063B /* [CP] Check Pods Manifest.lock */,
 				8C17C64D1EEF3447000ACC87 /* Sources */,
 				8C17C64E1EEF3447000ACC87 /* Frameworks */,
 				8C17C64F1EEF3447000ACC87 /* Resources */,
+				F69CD3CAACEB72CFF2DEB0BE /* [CP] Embed Pods Frameworks */,
+				A3E92072EBA4B53A2980C664 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -125,12 +155,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C17C65F1EEF3447000ACC87 /* LaunchScreen.storyboard in Resources */,
+				8C17C6671EEF57CE000ACC87 /* GoogleService-Info.plist in Resources */,
 				8C17C65C1EEF3447000ACC87 /* Assets.xcassets in Resources */,
 				8C17C65A1EEF3447000ACC87 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		903BDFDAC43DB0990544063B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A3E92072EBA4B53A2980C664 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CloudAndCamera/Pods-CloudAndCamera-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F69CD3CAACEB72CFF2DEB0BE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CloudAndCamera/Pods-CloudAndCamera-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8C17C64D1EEF3447000ACC87 /* Sources */ = {
@@ -259,6 +338,7 @@
 		};
 		8C17C6641EEF3447000ACC87 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D6033C8A5CA89C1199926E0 /* Pods-CloudAndCamera.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5C8D6R84CB;
@@ -272,6 +352,7 @@
 		};
 		8C17C6651EEF3447000ACC87 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F17E9A4AF6265010624ED6C1 /* Pods-CloudAndCamera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5C8D6R84CB;
@@ -302,6 +383,7 @@
 				8C17C6651EEF3447000ACC87 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
