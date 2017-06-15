@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        UINavigationBar.appearance().barStyle = .blackOpaque
+        //Set navbar color
+//        UINavigationBar.appearance().backgroundColor = UIColor(colorLiteralRed: 112.0/255, green: 114.0/255, blue: 146.0/255, alpha: 1.0)
+        UITabBar.appearance().tintColor = .black
         
         // Use Firebase library to configure APIs
         FirebaseApp.configure()

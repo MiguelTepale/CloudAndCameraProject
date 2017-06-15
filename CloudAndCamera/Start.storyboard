@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZrE-eC-bLZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xU8-xS-0lt">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,6 +52,9 @@
                                         <state key="normal" title="Sign In">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="tci-85-wlf" kind="presentation" id="ePV-XR-gi9"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -87,6 +90,10 @@
                             <constraint firstItem="jqJ-hw-K61" firstAttribute="centerY" secondItem="KIx-at-kzh" secondAttribute="centerY" id="ulv-MA-bE5"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="eey-Qb-lZm" id="8UN-3i-zHJ"/>
+                        <outlet property="passwordTextField" destination="PeW-Tp-fUY" id="08v-x7-Nxi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9yh-Nb-jsC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -143,10 +150,13 @@
                                         <state key="normal" title="Sign Up">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="tci-85-wlf" kind="presentation" id="hnR-3i-mk4"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolderImage" translatesAutoresizingMaskIntoConstraints="NO" id="GJR-pd-Obd">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyUserImage" translatesAutoresizingMaskIntoConstraints="NO" id="GJR-pd-Obd">
                                 <rect key="frame" x="147" y="84" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="dww-lF-Bks"/>
@@ -179,71 +189,30 @@
                             <constraint firstItem="rJy-od-Vvt" firstAttribute="centerY" secondItem="pbd-DE-nOA" secondAttribute="centerY" id="tbz-ZJ-YCF"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="ppl-OP-sRW" id="QhX-sj-Zz4"/>
+                        <outlet property="passwordTextField" destination="eZ1-j8-Jle" id="IR1-yI-RVF"/>
+                        <outlet property="profileImage" destination="GJR-pd-Obd" id="AcQ-8h-LVZ"/>
+                        <outlet property="usernameTextField" destination="hgn-jL-2qh" id="Mid-dP-HRN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RnP-cO-CTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="884" y="68"/>
+            <point key="canvasLocation" x="-20" y="891"/>
         </scene>
-        <!--Photos-->
-        <scene sceneID="7gz-6O-xAA">
+        <!--TabBarController-->
+        <scene sceneID="bbs-E9-fbU">
             <objects>
-                <viewController id="Nex-hI-hnf" customClass="PhotosViewController" customModule="CloudAndCamera" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="V6s-jG-JTP"/>
-                        <viewControllerLayoutGuide type="bottom" id="4II-xR-GXs"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="peq-IN-Ykk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Photos" image="photo-active (1)" id="6es-3H-kfa"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="n4u-FV-aG9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="TabBarController" id="tci-85-wlf" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c9X-RX-oJg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2718" y="405"/>
-        </scene>
-        <!--Home-->
-        <scene sceneID="Jvg-b8-PMT">
-            <objects>
-                <viewController id="noc-IF-RON" customClass="HomeViewController" customModule="CloudAndCamera" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6IC-TZ-XJj"/>
-                        <viewControllerLayoutGuide type="bottom" id="3oq-d3-qnm"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="N1l-iI-Auu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="home-active" id="Gn6-dP-dLA"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EZh-7N-mLu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2718" y="-249"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="KqD-AF-dUd">
-            <objects>
-                <tabBarController id="ZrE-eC-bLZ" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="Fyg-Fd-IUz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="noc-IF-RON" kind="relationship" relationship="viewControllers" id="eBX-Hc-r0X"/>
-                        <segue destination="Nex-hI-hnf" kind="relationship" relationship="viewControllers" id="00h-I2-z6t"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fuD-k1-uld" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1766" y="79"/>
+            <point key="canvasLocation" x="1730" y="603"/>
         </scene>
     </scenes>
     <resources>
-        <image name="home-active" width="32" height="32"/>
-        <image name="photo-active (1)" width="32" height="32"/>
-        <image name="placeHolderImage" width="181" height="272"/>
+        <image name="emptyUserImage" width="148" height="148"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="hnR-3i-mk4"/>
+    </inferredMetricsTieBreakers>
 </document>

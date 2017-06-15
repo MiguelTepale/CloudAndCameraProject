@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Photo Library-->
+        <scene sceneID="7gz-6O-xAA">
+            <objects>
+                <viewController id="Nex-hI-hnf" customClass="PhotosViewController" customModule="CloudAndCamera" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V6s-jG-JTP"/>
+                        <viewControllerLayoutGuide type="bottom" id="4II-xR-GXs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="peq-IN-Ykk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Photo Library" id="Hcn-wb-MGl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n4u-FV-aG9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3656.8000000000002" y="784.85757121439292"/>
+        </scene>
+        <!--Photos-->
+        <scene sceneID="HWc-oD-tJ2">
+            <objects>
+                <navigationController storyboardIdentifier="PhotosViewController" automaticallyAdjustsScrollViewInsets="NO" id="XXR-hu-NPm" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Photos" image="photo-active (1)" id="6es-3H-kfa"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="krJ-ij-0YV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Nex-hI-hnf" kind="relationship" relationship="rootViewController" id="opS-bY-u4e"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="me0-lv-L3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2717.5999999999999" y="784.85757121439292"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="photo-active (1)" width="32" height="32"/>
+    </resources>
+</document>

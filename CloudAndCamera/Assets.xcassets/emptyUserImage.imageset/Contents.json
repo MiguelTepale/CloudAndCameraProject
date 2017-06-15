@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "placeHolderImage.jpeg",
+      "filename" : "emptyUserImage.png",
       "scale" : "1x"
     },
     {

@@ -16,6 +16,9 @@
 		8C17C66E1EF1CB09000ACC87 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C17C66D1EF1CB09000ACC87 /* SignUpViewController.swift */; };
 		8C17C6701EF20FA8000ACC87 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C17C66F1EF20FA8000ACC87 /* HomeViewController.swift */; };
 		8C17C6721EF20FBB000ACC87 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C17C6711EF20FBB000ACC87 /* PhotosViewController.swift */; };
+		8C6059931EF2E546009F77C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6059921EF2E546009F77C6 /* Main.storyboard */; };
+		8C6059971EF2EDC9009F77C6 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6059961EF2EDC9009F77C6 /* Home.storyboard */; };
+		8C6059991EF2F509009F77C6 /* Photos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6059981EF2F509009F77C6 /* Photos.storyboard */; };
 		EA8DFF36E3958ED9713B216D /* Pods_CloudAndCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F0037C25316D2FEA70AAD8 /* Pods_CloudAndCamera.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +36,9 @@
 		8C17C66D1EF1CB09000ACC87 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		8C17C66F1EF20FA8000ACC87 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8C17C6711EF20FBB000ACC87 /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		8C6059921EF2E546009F77C6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		8C6059961EF2EDC9009F77C6 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		8C6059981EF2F509009F77C6 /* Photos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Photos.storyboard; sourceTree = "<group>"; };
 		F17E9A4AF6265010624ED6C1 /* Pods-CloudAndCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudAndCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-CloudAndCamera/Pods-CloudAndCamera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +99,9 @@
 				8C17C66B1EF1C577000ACC87 /* SignInViewController.swift */,
 				8C17C66D1EF1CB09000ACC87 /* SignUpViewController.swift */,
 				8C17C6691EF1C42B000ACC87 /* Start.storyboard */,
+				8C6059921EF2E546009F77C6 /* Main.storyboard */,
+				8C6059961EF2EDC9009F77C6 /* Home.storyboard */,
+				8C6059981EF2F509009F77C6 /* Photos.storyboard */,
 				8C17C65B1EEF3447000ACC87 /* Assets.xcassets */,
 				8C17C65D1EEF3447000ACC87 /* LaunchScreen.storyboard */,
 				8C17C6601EEF3447000ACC87 /* Info.plist */,
@@ -171,8 +180,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C6059991EF2F509009F77C6 /* Photos.storyboard in Resources */,
 				8C17C65F1EEF3447000ACC87 /* LaunchScreen.storyboard in Resources */,
+				8C6059931EF2E546009F77C6 /* Main.storyboard in Resources */,
 				8C17C6671EEF57CE000ACC87 /* GoogleService-Info.plist in Resources */,
+				8C6059971EF2EDC9009F77C6 /* Home.storyboard in Resources */,
 				8C17C66A1EF1C42B000ACC87 /* Start.storyboard in Resources */,
 				8C17C65C1EEF3447000ACC87 /* Assets.xcassets in Resources */,
 			);
