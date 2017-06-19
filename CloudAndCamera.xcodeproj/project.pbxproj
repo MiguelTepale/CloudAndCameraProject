@@ -21,6 +21,8 @@
 		8C6059991EF2F509009F77C6 /* Photos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6059981EF2F509009F77C6 /* Photos.storyboard */; };
 		8CA3A63E1EF63ECF00CDC0EE /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3A63D1EF63ECF00CDC0EE /* AuthService.swift */; };
 		8CA3A6421EF7979400CDC0EE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3A6411EF7979400CDC0EE /* Config.swift */; };
+		8CA3A6471EF79FFB00CDC0EE /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8CA3A6441EF79FFB00CDC0EE /* ProgressHUD.bundle */; };
+		8CA3A6481EF79FFB00CDC0EE /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3A6461EF79FFB00CDC0EE /* ProgressHUD.m */; };
 		EA8DFF36E3958ED9713B216D /* Pods_CloudAndCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F0037C25316D2FEA70AAD8 /* Pods_CloudAndCamera.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +45,10 @@
 		8C6059981EF2F509009F77C6 /* Photos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Photos.storyboard; sourceTree = "<group>"; };
 		8CA3A63D1EF63ECF00CDC0EE /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		8CA3A6411EF7979400CDC0EE /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		8CA3A6431EF79FFB00CDC0EE /* CloudAndCamera-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CloudAndCamera-Bridging-Header.h"; sourceTree = "<group>"; };
+		8CA3A6441EF79FFB00CDC0EE /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
+		8CA3A6451EF79FFB00CDC0EE /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		8CA3A6461EF79FFB00CDC0EE /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		F17E9A4AF6265010624ED6C1 /* Pods-CloudAndCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudAndCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-CloudAndCamera/Pods-CloudAndCamera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +118,10 @@
 				8C17C65D1EEF3447000ACC87 /* LaunchScreen.storyboard */,
 				8C17C6601EEF3447000ACC87 /* Info.plist */,
 				8C17C6661EEF57CE000ACC87 /* GoogleService-Info.plist */,
+				8CA3A6441EF79FFB00CDC0EE /* ProgressHUD.bundle */,
+				8CA3A6451EF79FFB00CDC0EE /* ProgressHUD.h */,
+				8CA3A6461EF79FFB00CDC0EE /* ProgressHUD.m */,
+				8CA3A6431EF79FFB00CDC0EE /* CloudAndCamera-Bridging-Header.h */,
 			);
 			path = CloudAndCamera;
 			sourceTree = "<group>";
@@ -159,6 +169,7 @@
 					8C17C6501EEF3447000ACC87 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 5C8D6R84CB;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -186,6 +197,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CA3A6471EF79FFB00CDC0EE /* ProgressHUD.bundle in Resources */,
 				8C6059991EF2F509009F77C6 /* Photos.storyboard in Resources */,
 				8C17C65F1EEF3447000ACC87 /* LaunchScreen.storyboard in Resources */,
 				8C6059931EF2E546009F77C6 /* Main.storyboard in Resources */,
@@ -257,6 +269,7 @@
 				8CA3A6421EF7979400CDC0EE /* Config.swift in Sources */,
 				8CA3A63E1EF63ECF00CDC0EE /* AuthService.swift in Sources */,
 				8C17C6701EF20FA8000ACC87 /* HomeViewController.swift in Sources */,
+				8CA3A6481EF79FFB00CDC0EE /* ProgressHUD.m in Sources */,
 				8C17C6721EF20FBB000ACC87 /* PhotosViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,11 +386,14 @@
 			baseConfigurationReference = 1D6033C8A5CA89C1199926E0 /* Pods-CloudAndCamera.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 5C8D6R84CB;
 				INFOPLIST_FILE = CloudAndCamera/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Miguel-Tepale.CloudAndCamera";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CloudAndCamera/CloudAndCamera-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -387,11 +403,13 @@
 			baseConfigurationReference = F17E9A4AF6265010624ED6C1 /* Pods-CloudAndCamera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 5C8D6R84CB;
 				INFOPLIST_FILE = CloudAndCamera/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Miguel-Tepale.CloudAndCamera";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CloudAndCamera/CloudAndCamera-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

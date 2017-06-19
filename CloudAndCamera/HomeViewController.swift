@@ -15,6 +15,11 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
     @IBAction func logoutButton(_ sender: UIBarButtonItem) {
         print(Auth.auth().currentUser!)
         do {
@@ -22,6 +27,7 @@ class HomeViewController: UIViewController {
         } catch let logoutError {
             print(logoutError)
         }
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         let startStoryboard = UIStoryboard(name: "Start", bundle: nil)
         let signInVC = startStoryboard.instantiateViewController(withIdentifier: "SignInViewController")
         self.present(signInVC, animated: true, completion: nil)

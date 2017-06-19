@@ -96,16 +96,18 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpButton(_ sender: UIButton) {
-        
+        view.endEditing(true)
+        ProgressHUD.show("Logging in...", interaction: false)
         if let profileImage = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImage, 0.1) {
             
             AuthService.signUpUser(username: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, imageData: imageData, onSuccess: {
+                ProgressHUD.showSuccess("Success")
                 self.performSegue(withIdentifier: "segueToHomeVC", sender: nil)
             }, onError: { (errorString) in
-                print(errorString!)
+                ProgressHUD.showError(errorString!)
             })
         } else {
-            print("Profile image can't be empty")
+            ProgressHUD.showError("Profile Image can't be empty")
         }
     }
     

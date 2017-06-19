@@ -20,9 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Set navbar color
         UINavigationBar.appearance().barTintColor = UIColor(red: 112/255, green: 114/255, blue: 146/255, alpha: 1)
         UINavigationBar.appearance().isTranslucent = false
-        
+        //Set tab bar item color
         UITabBar.appearance().tintColor = .black
-        
+        //Set Back button title & icon color
+        UINavigationBar.appearance().tintColor = UIColor.white
+        //Set Navigation Bar Title Color
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
         

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +21,67 @@
                     <view key="view" contentMode="scaleToFill" id="peq-IN-Ykk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dtJ-co-kcC" userLabel="Custom Upload Photo View">
+                                <rect key="frame" x="0.0" y="343" width="375" height="277"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="n8A-Ux-nT4" userLabel="Upload Photo Stack View">
+                                        <rect key="frame" x="112" y="57.5" width="151" height="162.5"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_uploadphoto" translatesAutoresizingMaskIntoConstraints="NO" id="qtx-mx-hWU" userLabel="Upload Photo Image">
+                                                <rect key="frame" x="0.0" y="0.0" width="151" height="134"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3K-WT-7h9" userLabel="Upload photo Label">
+                                                <rect key="frame" x="0.0" y="142" width="151" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.86300367116928101" green="0.8437315821647644" blue="0.35051456093788147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dtJ-co-kcC" secondAttribute="height" multiplier="375:277" id="3NF-FH-S7l"/>
+                                    <constraint firstItem="n8A-Ux-nT4" firstAttribute="centerX" secondItem="dtJ-co-kcC" secondAttribute="centerX" id="PFG-Mi-7Cf"/>
+                                    <constraint firstItem="n8A-Ux-nT4" firstAttribute="centerY" secondItem="dtJ-co-kcC" secondAttribute="centerY" id="PLO-Ee-hCe"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OX0-sY-79Z" userLabel="Custom Take Photo View">
+                                <rect key="frame" x="0.0" y="64" width="375" height="277"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wse-pC-i7q" userLabel="Take Photo Stack View">
+                                        <rect key="frame" x="112" y="67" width="150" height="142.5"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_takephoto" translatesAutoresizingMaskIntoConstraints="NO" id="789-N1-k0I" userLabel="Take Photo Image">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="114"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take Photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAj-Wg-K46" userLabel="Take Photo Label">
+                                                <rect key="frame" x="0.0" y="122" width="150" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.79421895742416382" green="0.65105485916137695" blue="0.37220191955566406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="wse-pC-i7q" firstAttribute="centerX" secondItem="OX0-sY-79Z" secondAttribute="centerX" id="oOZ-Vz-JTt"/>
+                                    <constraint firstItem="wse-pC-i7q" firstAttribute="centerY" secondItem="OX0-sY-79Z" secondAttribute="centerY" id="xp7-vQ-lk6"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="OX0-sY-79Z" secondAttribute="trailing" id="Upb-x5-0CZ"/>
+                            <constraint firstItem="OX0-sY-79Z" firstAttribute="top" secondItem="V6s-jG-JTP" secondAttribute="bottom" id="ZYC-Sr-iTk"/>
+                            <constraint firstAttribute="trailing" secondItem="dtJ-co-kcC" secondAttribute="trailing" id="bqe-4Q-org"/>
+                            <constraint firstAttribute="bottom" secondItem="dtJ-co-kcC" secondAttribute="bottom" constant="47" id="cwJ-aU-q3b"/>
+                            <constraint firstItem="OX0-sY-79Z" firstAttribute="leading" secondItem="peq-IN-Ykk" secondAttribute="leading" id="kEQ-C0-Mqh"/>
+                            <constraint firstItem="dtJ-co-kcC" firstAttribute="leading" secondItem="peq-IN-Ykk" secondAttribute="leading" id="kcW-y2-N11"/>
+                            <constraint firstItem="dtJ-co-kcC" firstAttribute="top" secondItem="OX0-sY-79Z" secondAttribute="bottom" constant="2" id="kw9-mE-0kT"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Photo Library" id="Hcn-wb-MGl"/>
                 </viewController>
@@ -50,6 +111,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="btn_takephoto" width="150" height="114"/>
+        <image name="btn_uploadphoto" width="151" height="134"/>
         <image name="photo-active (1)" width="32" height="32"/>
     </resources>
 </document>

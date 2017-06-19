@@ -77,22 +77,15 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func didAuthenticateUser(_ sender: UIButton) {
+        view.endEditing(true)
+        ProgressHUD.show("Logging in...", interaction: false)
         AuthService.signInUser(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
-            print("onSuccess succeeded")
+            ProgressHUD.showSuccess("Success")
             self.performSegue(withIdentifier: "segueToHomeVC", sender: nil)
         }, onError: { error in
+            ProgressHUD.showError(error!)
         print(error!)
         })
     }
-    
-    //Create a completion handler to deal with emptying all textfields
-    //Miguel: Please the second option
-    //Or use 'viewWillDisappear' or 'viewDidDisappear'
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "goToSignUpVC" {
-//            emailTextField.text = ""
-//            passwordTextField.text = ""
-//        }
-//    }
     
 }
