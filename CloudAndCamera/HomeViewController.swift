@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class HomeViewController: UIViewController {
 
@@ -14,7 +15,16 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func backButton(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
+    @IBAction func logoutButton(_ sender: UIBarButtonItem) {
+        print(Auth.auth().currentUser!)
+        do {
+            try Auth.auth().signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+        let startStoryboard = UIStoryboard(name: "Start", bundle: nil)
+        let signInVC = startStoryboard.instantiateViewController(withIdentifier: "SignInViewController")
+        self.present(signInVC, animated: true, completion: nil)
     }
+    
 }

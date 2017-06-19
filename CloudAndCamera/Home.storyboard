@@ -23,9 +23,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Moments" id="8Nu-n8-2Uq">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="3C7-ca-wZY">
+                        <barButtonItem key="leftBarButtonItem" title="SignOut" id="3C7-ca-wZY">
                             <connections>
-                                <action selector="backButton:" destination="noc-IF-RON" id="BRu-a9-PAl"/>
+                                <action selector="logoutButton:" destination="noc-IF-RON" id="HKO-hH-Cgg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -20,7 +20,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     
     var selectedImage: UIImage?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,8 +57,16 @@ class SignUpViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapProfileImageView))
         profileImage.addGestureRecognizer(tapGesture)
         profileImage.isUserInteractionEnabled = true
+        signUpButton.isEnabled = false
         
         handleTextField()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        usernameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
     }
     
     func handleTextField() {
@@ -89,41 +97,18 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUpButton(_ sender: UIButton) {
         
-        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user: User?, error: Error?) in
-            if error != nil {
-                print(error!.localizedDescription)
-                return
-            }
-            let userId = user?.uid
+        if let profileImage = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImage, 0.1) {
             
-            let storageReference = Storage.storage().reference().child("profile_image").child(userId!)
-            if let profileImage = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImage, 0.1) {
-                storageReference.putData(imageData, metadata: nil, completion: {(metadata, error) in
-                    if error != nil {
-                        return
-                    }
-                    let profileImageUrl = metadata?.downloadURL()?.absoluteString
-                    self.setUserInformation(profileImageURl: profileImageUrl!, username: self.usernameTextField.text!, email: self.emailTextField.text!, uid: userId!)
-                })
-            }
+            AuthService.signUpUser(username: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, imageData: imageData, onSuccess: {
+                self.performSegue(withIdentifier: "segueToHomeVC", sender: nil)
+            }, onError: { (errorString) in
+                print(errorString!)
+            })
+        } else {
+            print("Profile image can't be empty")
         }
     }
     
-    func setUserInformation(profileImageURl: String, username: String, email: String, uid: String) {
-        
-        var reference: DatabaseReference!
-        reference = Database.database().reference()
-        let userReference = reference.child("users")
-        let newUserReference = userReference.child(uid)
-        newUserReference.setValue(["username":username, "email":email, "profileImageUrl":profileImageURl])
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        usernameTextField.resignFirstResponder()
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-    }
 }
 
 extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -135,4 +120,5 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         }
         dismiss(animated: true, completion: nil)
     }
+    
 }

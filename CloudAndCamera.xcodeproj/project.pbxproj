@@ -19,6 +19,8 @@
 		8C6059931EF2E546009F77C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6059921EF2E546009F77C6 /* Main.storyboard */; };
 		8C6059971EF2EDC9009F77C6 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6059961EF2EDC9009F77C6 /* Home.storyboard */; };
 		8C6059991EF2F509009F77C6 /* Photos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6059981EF2F509009F77C6 /* Photos.storyboard */; };
+		8CA3A63E1EF63ECF00CDC0EE /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3A63D1EF63ECF00CDC0EE /* AuthService.swift */; };
+		8CA3A6421EF7979400CDC0EE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3A6411EF7979400CDC0EE /* Config.swift */; };
 		EA8DFF36E3958ED9713B216D /* Pods_CloudAndCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F0037C25316D2FEA70AAD8 /* Pods_CloudAndCamera.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,8 @@
 		8C6059921EF2E546009F77C6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8C6059961EF2EDC9009F77C6 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		8C6059981EF2F509009F77C6 /* Photos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Photos.storyboard; sourceTree = "<group>"; };
+		8CA3A63D1EF63ECF00CDC0EE /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		8CA3A6411EF7979400CDC0EE /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		F17E9A4AF6265010624ED6C1 /* Pods-CloudAndCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudAndCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-CloudAndCamera/Pods-CloudAndCamera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				8C17C6541EEF3447000ACC87 /* AppDelegate.swift */,
+				8CA3A63D1EF63ECF00CDC0EE /* AuthService.swift */,
+				8CA3A6411EF7979400CDC0EE /* Config.swift */,
 				8C17C66F1EF20FA8000ACC87 /* HomeViewController.swift */,
 				8C17C6711EF20FBB000ACC87 /* PhotosViewController.swift */,
 				8C17C66B1EF1C577000ACC87 /* SignInViewController.swift */,
@@ -248,6 +254,8 @@
 				8C17C6551EEF3447000ACC87 /* AppDelegate.swift in Sources */,
 				8C17C66E1EF1CB09000ACC87 /* SignUpViewController.swift in Sources */,
 				8C17C66C1EF1C577000ACC87 /* SignInViewController.swift in Sources */,
+				8CA3A6421EF7979400CDC0EE /* Config.swift in Sources */,
+				8CA3A63E1EF63ECF00CDC0EE /* AuthService.swift in Sources */,
 				8C17C6701EF20FA8000ACC87 /* HomeViewController.swift in Sources */,
 				8C17C6721EF20FBB000ACC87 /* PhotosViewController.swift in Sources */,
 			);

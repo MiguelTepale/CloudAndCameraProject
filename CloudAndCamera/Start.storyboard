@@ -13,7 +13,7 @@
         <!--Sign In View Controller-->
         <scene sceneID="MxT-ZL-8ej">
             <objects>
-                <viewController id="xU8-xS-0lt" customClass="SignInViewController" customModule="CloudAndCamera" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" id="xU8-xS-0lt" customClass="SignInViewController" customModule="CloudAndCamera" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TSu-Y4-wDj"/>
                         <viewControllerLayoutGuide type="bottom" id="Z2Y-xM-uHw"/>
@@ -53,7 +53,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="tci-85-wlf" kind="presentation" id="ePV-XR-gi9"/>
+                                            <action selector="didAuthenticateUser:" destination="xU8-xS-0lt" eventType="touchUpInside" id="VEn-kw-t9L"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -94,6 +94,7 @@
                         <outlet property="emailTextField" destination="eey-Qb-lZm" id="8UN-3i-zHJ"/>
                         <outlet property="passwordTextField" destination="PeW-Tp-fUY" id="08v-x7-Nxi"/>
                         <outlet property="signInButton" destination="nBa-pa-0iH" id="6ZQ-rp-f2s"/>
+                        <segue destination="tci-85-wlf" kind="presentation" identifier="segueToHomeVC" id="W3g-RC-p5W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9yh-Nb-jsC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -153,7 +154,6 @@
                                         </state>
                                         <connections>
                                             <action selector="signUpButton:" destination="oEt-b3-wqz" eventType="touchUpInside" id="PFW-n8-V77"/>
-                                            <segue destination="tci-85-wlf" kind="presentation" id="hnR-3i-mk4"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -197,6 +197,7 @@
                         <outlet property="profileImage" destination="GJR-pd-Obd" id="AcQ-8h-LVZ"/>
                         <outlet property="signUpButton" destination="2M3-gO-eOG" id="udc-Mq-auY"/>
                         <outlet property="usernameTextField" destination="hgn-jL-2qh" id="Mid-dP-HRN"/>
+                        <segue destination="tci-85-wlf" kind="presentation" identifier="segueToHomeVC" id="rWj-5v-2GH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RnP-cO-CTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -216,6 +217,6 @@
         <image name="emptyUserImage" width="148" height="148"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ePV-XR-gi9"/>
+        <segue reference="W3g-RC-p5W"/>
     </inferredMetricsTieBreakers>
 </document>
