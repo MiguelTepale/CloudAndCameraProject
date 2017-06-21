@@ -122,5 +122,4 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         }
         dismiss(animated: true, completion: nil)
     }
-    
 }

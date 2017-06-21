@@ -23,6 +23,7 @@
 		8CA3A6421EF7979400CDC0EE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3A6411EF7979400CDC0EE /* Config.swift */; };
 		8CA3A6471EF79FFB00CDC0EE /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8CA3A6441EF79FFB00CDC0EE /* ProgressHUD.bundle */; };
 		8CA3A6481EF79FFB00CDC0EE /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3A6461EF79FFB00CDC0EE /* ProgressHUD.m */; };
+		8CA3A64A1EF9A23B00CDC0EE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3A6491EF9A23B00CDC0EE /* DetailViewController.swift */; };
 		EA8DFF36E3958ED9713B216D /* Pods_CloudAndCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F0037C25316D2FEA70AAD8 /* Pods_CloudAndCamera.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		8CA3A6441EF79FFB00CDC0EE /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		8CA3A6451EF79FFB00CDC0EE /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		8CA3A6461EF79FFB00CDC0EE /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
+		8CA3A6491EF9A23B00CDC0EE /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F17E9A4AF6265010624ED6C1 /* Pods-CloudAndCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudAndCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-CloudAndCamera/Pods-CloudAndCamera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,14 +108,8 @@
 				8C17C6541EEF3447000ACC87 /* AppDelegate.swift */,
 				8CA3A63D1EF63ECF00CDC0EE /* AuthService.swift */,
 				8CA3A6411EF7979400CDC0EE /* Config.swift */,
-				8C17C66F1EF20FA8000ACC87 /* HomeViewController.swift */,
-				8C17C6711EF20FBB000ACC87 /* PhotosViewController.swift */,
-				8C17C66B1EF1C577000ACC87 /* SignInViewController.swift */,
-				8C17C66D1EF1CB09000ACC87 /* SignUpViewController.swift */,
-				8C17C6691EF1C42B000ACC87 /* Start.storyboard */,
-				8C6059921EF2E546009F77C6 /* Main.storyboard */,
-				8C6059961EF2EDC9009F77C6 /* Home.storyboard */,
-				8C6059981EF2F509009F77C6 /* Photos.storyboard */,
+				8CA3A64B1EF9A24B00CDC0EE /* View Controllers */,
+				8CA3A64C1EF9A28400CDC0EE /* Storyboards */,
 				8C17C65B1EEF3447000ACC87 /* Assets.xcassets */,
 				8C17C65D1EEF3447000ACC87 /* LaunchScreen.storyboard */,
 				8C17C6601EEF3447000ACC87 /* Info.plist */,
@@ -131,6 +127,29 @@
 			children = (
 			);
 			name = Icons;
+			sourceTree = "<group>";
+		};
+		8CA3A64B1EF9A24B00CDC0EE /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8CA3A6491EF9A23B00CDC0EE /* DetailViewController.swift */,
+				8C17C66F1EF20FA8000ACC87 /* HomeViewController.swift */,
+				8C17C6711EF20FBB000ACC87 /* PhotosViewController.swift */,
+				8C17C66B1EF1C577000ACC87 /* SignInViewController.swift */,
+				8C17C66D1EF1CB09000ACC87 /* SignUpViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		8CA3A64C1EF9A28400CDC0EE /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				8C17C6691EF1C42B000ACC87 /* Start.storyboard */,
+				8C6059921EF2E546009F77C6 /* Main.storyboard */,
+				8C6059961EF2EDC9009F77C6 /* Home.storyboard */,
+				8C6059981EF2F509009F77C6 /* Photos.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CA3A64A1EF9A23B00CDC0EE /* DetailViewController.swift in Sources */,
 				8C17C6551EEF3447000ACC87 /* AppDelegate.swift in Sources */,
 				8C17C66E1EF1CB09000ACC87 /* SignUpViewController.swift in Sources */,
 				8C17C66C1EF1C577000ACC87 /* SignInViewController.swift in Sources */,

@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="343" width="375" height="277"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="n8A-Ux-nT4" userLabel="Upload Photo Stack View">
-                                        <rect key="frame" x="112" y="57.5" width="151" height="162.5"/>
+                                        <rect key="frame" x="112.5" y="57.5" width="151" height="162.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_uploadphoto" translatesAutoresizingMaskIntoConstraints="NO" id="qtx-mx-hWU" userLabel="Upload Photo Image">
                                                 <rect key="frame" x="0.0" y="0.0" width="151" height="134"/>
@@ -84,6 +84,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Photo Library" id="Hcn-wb-MGl"/>
+                    <connections>
+                        <outlet property="uploadPhotoStackView" destination="n8A-Ux-nT4" id="xTG-pn-JAT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n4u-FV-aG9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

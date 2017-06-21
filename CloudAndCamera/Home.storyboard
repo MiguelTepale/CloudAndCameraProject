@@ -20,7 +20,35 @@
                     <view key="view" contentMode="scaleToFill" id="N1l-iI-Auu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="G75-4q-ekQ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GUK-nq-yTA">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="B69-hF-aRa">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="G75-4q-ekQ" firstAttribute="top" secondItem="6IC-TZ-XJj" secondAttribute="bottom" id="X5K-qf-jt8"/>
+                            <constraint firstItem="3oq-d3-qnm" firstAttribute="top" secondItem="G75-4q-ekQ" secondAttribute="bottom" id="bn5-o3-iOb"/>
+                            <constraint firstAttribute="trailing" secondItem="G75-4q-ekQ" secondAttribute="trailing" id="gQb-ud-FlE"/>
+                            <constraint firstItem="G75-4q-ekQ" firstAttribute="leading" secondItem="N1l-iI-Auu" secondAttribute="leading" id="jfR-Lf-Cf9"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Moments" id="8Nu-n8-2Uq">
                         <barButtonItem key="leftBarButtonItem" title="SignOut" id="3C7-ca-wZY">
@@ -29,10 +57,35 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="G75-4q-ekQ" id="C8t-W6-dTW"/>
+                        <segue destination="BUk-Va-yP8" kind="show" id="VMX-gW-Uca"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZh-7N-mLu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3656.8000000000002" y="67.916041979010501"/>
+        </scene>
+        <!--Photo Details-->
+        <scene sceneID="jgU-lG-pY8">
+            <objects>
+                <viewController id="BUk-Va-yP8" customClass="DetailViewController" customModule="CloudAndCamera" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EgZ-l3-Peg"/>
+                        <viewControllerLayoutGuide type="bottom" id="qqK-Y5-Wxc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JKd-g4-go2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Photo Details" id="Pfl-jJ-VnU">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="EC8-Yp-pid"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QTJ-zB-MJr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4700" y="68"/>
         </scene>
         <!--Home-->
         <scene sceneID="GKP-cD-gy5">
