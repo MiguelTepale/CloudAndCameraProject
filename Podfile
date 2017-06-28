@@ -9,6 +9,7 @@ target 'CloudAndCamera' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
+  pod 'Alamofire', '~> 4.4'
   # Pods for FireBaseSample
 
 end

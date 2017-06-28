@@ -101,6 +101,7 @@ class SignUpViewController: UIViewController {
         if let profileImage = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImage, 0.1) {
             
             AuthService.signUpUser(username: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, imageData: imageData, onSuccess: {
+                
                 ProgressHUD.showSuccess("Success")
                 self.performSegue(withIdentifier: "segueToHomeVC", sender: nil)
             }, onError: { (errorString) in

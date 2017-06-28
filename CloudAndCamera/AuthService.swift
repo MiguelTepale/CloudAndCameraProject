@@ -26,6 +26,7 @@ class AuthService {
     static func signUpUser(username: String, email: String, password: String, imageData: Data, onSuccess:@escaping () -> Void, onError:@escaping (_ errorMesage:String?) -> Void) {
         
         Auth.auth().createUser(withEmail: email, password: password) { (user: User?, error: Error?) in
+            
             if error != nil {
                 print(error!.localizedDescription)
                 return

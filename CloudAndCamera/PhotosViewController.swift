@@ -53,7 +53,9 @@ class PhotosViewController: UIViewController {
 }
 
 extension PhotosViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
         print("Did finish picking photo in camera")
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
             selectedImage = image
