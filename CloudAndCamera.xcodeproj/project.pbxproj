@@ -107,6 +107,9 @@
 		8C17C6531EEF3447000ACC87 /* CloudAndCamera */ = {
 			isa = PBXGroup;
 			children = (
+				8CCE8F8B1F055DCA009EE492 /* Model */,
+				8CCE8F8D1F055DD2009EE492 /* View */,
+				8CCE8F8E1F055DD5009EE492 /* Controller */,
 				8C17C6541EEF3447000ACC87 /* AppDelegate.swift */,
 				8CA3A63D1EF63ECF00CDC0EE /* AuthService.swift */,
 				8CA3A6411EF7979400CDC0EE /* Config.swift */,
@@ -153,6 +156,27 @@
 				8CCE8F891F0430D4009EE492 /* PhotoCell.swift */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		8CCE8F8B1F055DCA009EE492 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		8CCE8F8D1F055DD2009EE492 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		8CCE8F8E1F055DD5009EE492 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

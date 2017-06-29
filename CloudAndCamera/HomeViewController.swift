@@ -14,6 +14,7 @@ import Alamofire
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    var userURLS = [URL]()
     var userPhotos = [UIImage]()
     
     override func viewDidLoad() {
@@ -30,12 +31,8 @@ class HomeViewController: UIViewController {
         layout.minimumLineSpacing = 0
         collectionView.collectionViewLayout = layout
         
-        self.loadUploadedUserPhotos {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
-        
+        retrievePhotoURLS()
+//        loadUploadedUserPhotos()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,7 +40,38 @@ class HomeViewController: UIViewController {
         UIApplication.shared.statusBarStyle = .lightContent
     }
     
-    func loadUploadedUserPhotos(onSuccess: @escaping ()->Void) {
+//    func loadUploadedUserPhotos() {
+//        
+//        let url = "https://cloudandcamera-8f82b.firebaseio.com/user_images.json"
+//        
+//        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default).responseJSON(completionHandler: {response in
+//            
+//            //one giant dictionary...
+//            let results = response.result.value as! [String : Any]
+//            
+//            for result in results.values{
+//                
+//                guard let result = result as? [String:Any] else {
+//                    print("The Dictionary is nil in loadUploadedUserPhotos")
+//                    return
+//                }
+//                if let urlString = result["photoUrl"] as? String {
+//                    let imageURL = URL(string: urlString)
+//                    var imageData = Data()
+//                    do {
+//                    try imageData = Data(contentsOf: imageURL!)
+//                    } catch {
+//                    print("imageData is nil")
+//                    }
+//                    let userImage = UIImage(data: imageData)
+//                    self.userPhotos.append(userImage!)
+//                    self.collectionView.reloadData()
+//                }
+//            }
+//        })
+//    }
+    
+    func retrievePhotoURLS() {
         
         let url = "https://cloudandcamera-8f82b.firebaseio.com/user_images.json"
         
@@ -60,19 +88,31 @@ class HomeViewController: UIViewController {
                 }
                 if let urlString = result["photoUrl"] as? String {
                     let imageURL = URL(string: urlString)
-                    var imageData = Data()
-                    do {
-                    try imageData = Data(contentsOf: imageURL!)
-                    } catch {
-                    print("imageData is nil")
-                    }
-                    let userImage = UIImage(data: imageData)
-                    self.userPhotos.append(userImage!)
+                    self.userURLS.append(imageURL!)
                 }
             }
-            
-            onSuccess()
+            self.downloadPhotos(self.userURLS)
         })
+    }
+    
+    //SDWebImage for caching
+    func downloadPhotos(_ userURLS:Array<URL>) {
+        
+        for url in userURLS {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                guard let urlData = data, error == nil else {
+                    return
+                }
+                
+                let userImage = UIImage(data: urlData)
+                self.userPhotos.append(userImage!)
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+                }
+                .resume()
+        }
     }
 
     @IBAction func logoutButton(_ sender: UIBarButtonItem) {
@@ -111,7 +151,6 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         cell.imageView.image = currentPhoto
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 0.5
-        cell.layer.backgroundColor = UIColor.orange.cgColor
         return cell
     }
     
