@@ -12,6 +12,7 @@ import FirebaseDatabase
 
 class PhotosViewController: UIViewController {
 
+    @IBOutlet weak var takePhotoStackView: UIStackView!
     @IBOutlet weak var uploadPhotoStackView: UIStackView!
     
     var selectedImage: UIImage?
@@ -19,8 +20,12 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapPhotoStackView))
-        uploadPhotoStackView.addGestureRecognizer(tapGesture)
+        let takePhotoTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapTakePhotoStackView))
+        takePhotoStackView.addGestureRecognizer(takePhotoTapGesture)
+        takePhotoStackView.isUserInteractionEnabled = true
+        
+        let uploadPhotoTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapUploadPhotoStackView))
+        uploadPhotoStackView.addGestureRecognizer(uploadPhotoTapGesture)
         uploadPhotoStackView.isUserInteractionEnabled = true
     }
     
@@ -29,10 +34,20 @@ class PhotosViewController: UIViewController {
         UIApplication.shared.statusBarStyle = .lightContent
     }
     
-    func didTapPhotoStackView() {
+    func didTapUploadPhotoStackView() {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         present(pickerController, animated: true, completion: nil)
+    }
+    
+    func didTapTakePhotoStackView() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
     }
     
     func sendDataToDatabase(photoUrl: String) {

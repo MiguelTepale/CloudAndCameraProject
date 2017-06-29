@@ -32,44 +32,12 @@ class HomeViewController: UIViewController {
         collectionView.collectionViewLayout = layout
         
         retrievePhotoURLS()
-//        loadUploadedUserPhotos()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
     }
-    
-//    func loadUploadedUserPhotos() {
-//        
-//        let url = "https://cloudandcamera-8f82b.firebaseio.com/user_images.json"
-//        
-//        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default).responseJSON(completionHandler: {response in
-//            
-//            //one giant dictionary...
-//            let results = response.result.value as! [String : Any]
-//            
-//            for result in results.values{
-//                
-//                guard let result = result as? [String:Any] else {
-//                    print("The Dictionary is nil in loadUploadedUserPhotos")
-//                    return
-//                }
-//                if let urlString = result["photoUrl"] as? String {
-//                    let imageURL = URL(string: urlString)
-//                    var imageData = Data()
-//                    do {
-//                    try imageData = Data(contentsOf: imageURL!)
-//                    } catch {
-//                    print("imageData is nil")
-//                    }
-//                    let userImage = UIImage(data: imageData)
-//                    self.userPhotos.append(userImage!)
-//                    self.collectionView.reloadData()
-//                }
-//            }
-//        })
-//    }
     
     func retrievePhotoURLS() {
         
@@ -96,6 +64,7 @@ class HomeViewController: UIViewController {
     }
     
     //SDWebImage for caching
+    //Or follow "Build that app" tutorial on caching images
     func downloadPhotos(_ userURLS:Array<URL>) {
         
         for url in userURLS {
@@ -104,10 +73,9 @@ class HomeViewController: UIViewController {
                     return
                 }
                 
-                let userImage = UIImage(data: urlData)
-                self.userPhotos.append(userImage!)
-                
                 DispatchQueue.main.async {
+                    let userImage = UIImage(data: urlData)
+                    self.userPhotos.append(userImage!)
                     self.collectionView.reloadData()
                 }
                 }

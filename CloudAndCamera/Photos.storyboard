@@ -85,6 +85,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Photo Library" id="Hcn-wb-MGl"/>
                     <connections>
+                        <outlet property="takePhotoStackView" destination="wse-pC-i7q" id="zg1-5R-kBY"/>
                         <outlet property="uploadPhotoStackView" destination="n8A-Ux-nT4" id="xTG-pn-JAT"/>
                     </connections>
                 </viewController>
