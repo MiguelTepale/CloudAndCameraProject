@@ -8,14 +8,12 @@
 
 import UIKit
 import FirebaseAuth
-import FirebaseDatabase
 import Alamofire
 
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var userURLS = [URL]()
-    var userPhotos = [UIImage]()
+    var photos = [Photo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,27 +53,28 @@ class HomeViewController: UIViewController {
                     return
                 }
                 if let urlString = result["photoUrl"] as? String {
+                    let photo = Photo()
                     let imageURL = URL(string: urlString)
-                    self.userURLS.append(imageURL!)
+                    photo.url = imageURL!
+                    self.photos.append(photo)
                 }
             }
-            self.downloadPhotos(self.userURLS)
+            self.downloadPhotos(self.photos)
         })
     }
-    
     //SDWebImage for caching
     //Or follow "Build that app" tutorial on caching images
-    func downloadPhotos(_ userURLS:Array<URL>) {
+    func downloadPhotos(_ photos:Array<Photo>) {
         
-        for url in userURLS {
-            URLSession.shared.dataTask(with: url) { data, response, error in
+        for photo in photos {
+            URLSession.shared.dataTask(with: photo.url!) { data, response, error in
                 guard let urlData = data, error == nil else {
                     return
                 }
                 
                 DispatchQueue.main.async {
                     let userImage = UIImage(data: urlData)
-                    self.userPhotos.append(userImage!)
+                    photo.image = userImage!
                     self.collectionView.reloadData()
                 }
                 }
@@ -106,7 +105,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return userPhotos.count
+        return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -114,9 +113,9 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCell ?? PhotoCell()
 //        cell.reuseIdentifier = " PhotoCell"
 
-        let currentPhoto = userPhotos[indexPath.row]
+        let currentPhoto = photos[indexPath.row]
     
-        cell.imageView.image = currentPhoto
+        cell.imageView.image = currentPhoto.image
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 0.5
         return cell

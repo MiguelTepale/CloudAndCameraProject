@@ -24,6 +24,7 @@
 		8CA3A6471EF79FFB00CDC0EE /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8CA3A6441EF79FFB00CDC0EE /* ProgressHUD.bundle */; };
 		8CA3A6481EF79FFB00CDC0EE /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3A6461EF79FFB00CDC0EE /* ProgressHUD.m */; };
 		8CA3A64A1EF9A23B00CDC0EE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3A6491EF9A23B00CDC0EE /* DetailViewController.swift */; };
+		8CA5368E1F06D9720079E0F4 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5368D1F06D9720079E0F4 /* Photo.swift */; };
 		8CCE8F8A1F0430D4009EE492 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCE8F891F0430D4009EE492 /* PhotoCell.swift */; };
 		EA8DFF36E3958ED9713B216D /* Pods_CloudAndCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F0037C25316D2FEA70AAD8 /* Pods_CloudAndCamera.framework */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		8CA3A6451EF79FFB00CDC0EE /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		8CA3A6461EF79FFB00CDC0EE /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		8CA3A6491EF9A23B00CDC0EE /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		8CA5368D1F06D9720079E0F4 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		8CCE8F891F0430D4009EE492 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		F17E9A4AF6265010624ED6C1 /* Pods-CloudAndCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudAndCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-CloudAndCamera/Pods-CloudAndCamera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,7 +155,6 @@
 				8C6059921EF2E546009F77C6 /* Main.storyboard */,
 				8C6059961EF2EDC9009F77C6 /* Home.storyboard */,
 				8C6059981EF2F509009F77C6 /* Photos.storyboard */,
-				8CCE8F891F0430D4009EE492 /* PhotoCell.swift */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -161,6 +162,8 @@
 		8CCE8F8B1F055DCA009EE492 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8CCE8F891F0430D4009EE492 /* PhotoCell.swift */,
+				8CA5368D1F06D9720079E0F4 /* Photo.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				8CA3A6421EF7979400CDC0EE /* Config.swift in Sources */,
 				8CA3A63E1EF63ECF00CDC0EE /* AuthService.swift in Sources */,
 				8CCE8F8A1F0430D4009EE492 /* PhotoCell.swift in Sources */,
+				8CA5368E1F06D9720079E0F4 /* Photo.swift in Sources */,
 				8C17C6701EF20FA8000ACC87 /* HomeViewController.swift in Sources */,
 				8CA3A6481EF79FFB00CDC0EE /* ProgressHUD.m in Sources */,
 				8C17C6721EF20FBB000ACC87 /* PhotosViewController.swift in Sources */,
