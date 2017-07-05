@@ -26,60 +26,16 @@ class HomeViewController: UIViewController {
         layout.itemSize = CGSize(width: width / 3, height: width / 3)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
+        layout.minimumLineSpacing = 0 
         collectionView.collectionViewLayout = layout
+        PhotoCell.delegate = self
         
-        retrievePhotoURLS()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
-    }
-    
-    func retrievePhotoURLS() {
-        
-        let url = "https://cloudandcamera-8f82b.firebaseio.com/user_images.json"
-        
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default).responseJSON(completionHandler: {response in
-            
-            //one giant dictionary...
-            let results = response.result.value as! [String : Any]
-            
-            for result in results.values{
-                
-                guard let result = result as? [String:Any] else {
-                    print("The Dictionary is nil in loadUploadedUserPhotos")
-                    return
-                }
-                if let urlString = result["photoUrl"] as? String {
-                    let photo = Photo()
-                    let imageURL = URL(string: urlString)
-                    photo.url = imageURL!
-                    self.photos.append(photo)
-                }
-            }
-            self.downloadPhotos(self.photos)
-        })
-    }
-    //SDWebImage for caching
-    //Or follow "Build that app" tutorial on caching images
-    func downloadPhotos(_ photos:Array<Photo>) {
-        
-        for photo in photos {
-            URLSession.shared.dataTask(with: photo.url!) { data, response, error in
-                guard let urlData = data, error == nil else {
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    let userImage = UIImage(data: urlData)
-                    photo.image = userImage!
-                    self.collectionView.reloadData()
-                }
-                }
-                .resume()
-        }
+        PhotoCell.retrievePhotoURLS("https:cloudandcamera-8f82b.firebaseio.com/user_images.json")
     }
 
     @IBAction func logoutButton(_ sender: UIBarButtonItem) {
@@ -95,7 +51,6 @@ class HomeViewController: UIViewController {
         let signInVC = startStoryboard.instantiateViewController(withIdentifier: "SignInViewController")
         self.present(signInVC, animated: true, completion: nil)
     }
-    
 }
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -105,7 +60,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        return PhotoCell.photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -113,7 +68,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCell ?? PhotoCell()
 //        cell.reuseIdentifier = " PhotoCell"
 
-        let currentPhoto = photos[indexPath.row]
+        let currentPhoto = PhotoCell.photos[indexPath.row]
     
         cell.imageView.image = currentPhoto.image
         cell.layer.borderColor = UIColor.black.cgColor
@@ -121,4 +76,13 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         return cell
     }
     
+}
+
+extension HomeViewController: photoCellDelegate {
+    func photosFinishedDownloading(_ didFinish: Bool) {
+        
+        if didFinish == true {
+            collectionView.reloadData()
+        }
+    }
 }

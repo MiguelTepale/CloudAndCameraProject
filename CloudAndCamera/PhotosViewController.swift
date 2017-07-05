@@ -92,7 +92,6 @@ extension PhotosViewController: UIImagePickerControllerDelegate, UINavigationCon
         } else {
             ProgressHUD.showError("Profile image can't be empty")
         }
-        //Consider removing all elements form array then repopulating with the new image
         dismiss(animated: true, completion: nil)
     }
 }
