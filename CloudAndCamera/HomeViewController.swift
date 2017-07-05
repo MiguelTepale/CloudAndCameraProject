@@ -20,6 +20,7 @@ class HomeViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        NetworkCall.delegate = self
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width
@@ -28,14 +29,13 @@ class HomeViewController: UIViewController {
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0 
         collectionView.collectionViewLayout = layout
-        PhotoCell.delegate = self
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
-        PhotoCell.retrievePhotoURLS("https:cloudandcamera-8f82b.firebaseio.com/user_images.json")
+        NetworkCall.retrievePhotoURLS("https:cloudandcamera-8f82b.firebaseio.com/user_images.json")
     }
 
     @IBAction func logoutButton(_ sender: UIBarButtonItem) {
@@ -60,7 +60,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PhotoCell.photos.count
+        return NetworkCall.photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -68,17 +68,16 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCell ?? PhotoCell()
 //        cell.reuseIdentifier = " PhotoCell"
 
-        let currentPhoto = PhotoCell.photos[indexPath.row]
+        let currentPhoto = NetworkCall.photos[indexPath.row]
     
         cell.imageView.image = currentPhoto.image
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 0.5
         return cell
     }
-    
 }
 
-extension HomeViewController: photoCellDelegate {
+extension HomeViewController: NetworkCallDelegate {
     func photosFinishedDownloading(_ didFinish: Bool) {
         
         if didFinish == true {
