@@ -12,5 +12,7 @@ class Photo: NSObject {
     
     var url = URL(string: "https://www.google.com")
     var image = UIImage()
+    var hasDownloaded = false
+    var id : String?
     
 }

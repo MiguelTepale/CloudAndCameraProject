@@ -87,6 +87,10 @@ extension PhotosViewController: UIImagePickerControllerDelegate, UINavigationCon
                     return
                 }
                 let photoUrl = metadata?.downloadURL()?.absoluteString
+                let photo = Photo()
+                let photoImageUrl = URL(string: photoUrl!)
+                photo.url = photoImageUrl
+                NetworkCall.photos.append(photo)
                 self.sendDataToDatabase(photoUrl: photoUrl!)
             })
         } else {

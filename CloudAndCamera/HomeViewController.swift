@@ -13,7 +13,7 @@ import Alamofire
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var photos = [Photo]()
+    var appHasInitialized = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,15 +27,23 @@ class HomeViewController: UIViewController {
         layout.itemSize = CGSize(width: width / 3, height: width / 3)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0 
+        layout.minimumLineSpacing = 0
         collectionView.collectionViewLayout = layout
+    NetworkCall.initializePhotoURLDownloadFromFirebase("https:cloudandcamera-8f82b.firebaseio.com/user_images.json")
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
-        NetworkCall.retrievePhotoURLS("https:cloudandcamera-8f82b.firebaseio.com/user_images.json")
+        if appHasInitialized == true {
+            NetworkCall.retrieveCurrentPhotoURLS()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        appHasInitialized = true
     }
 
     @IBAction func logoutButton(_ sender: UIBarButtonItem) {

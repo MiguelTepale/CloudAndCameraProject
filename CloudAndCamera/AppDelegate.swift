@@ -14,11 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         //Set navbar color
-        UINavigationBar.appearance().barTintColor = UIColor(red: 112/255, green: 114/255, blue: 146/255, alpha: 1)
+        UINavigationBar.appearance().barTintColor = UIColor(red:0.44, green:0.44, blue:0.57, alpha:1.0)
         UINavigationBar.appearance().isTranslucent = false
         //Set tab bar item color
         UITabBar.appearance().tintColor = .black
