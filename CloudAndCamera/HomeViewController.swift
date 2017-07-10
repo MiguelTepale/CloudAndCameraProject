@@ -36,15 +36,16 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
-        if appHasInitialized == true {
-            NetworkCall.retrieveCurrentPhotoURLS()
-        }
+        //Use this commented lines in case if the photos in the collectionView get removed when switching to 'PhotosViewController and back to 'HomeViewController'
+//        if appHasInitialized == true {
+//            NetworkCall.retrievePhotoURL()
+//        }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        appHasInitialized = true
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        appHasInitialized = true
+//    }
 
     @IBAction func logoutButton(_ sender: UIBarButtonItem) {
         

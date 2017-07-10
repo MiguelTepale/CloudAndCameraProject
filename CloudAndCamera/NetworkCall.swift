@@ -17,20 +17,25 @@ protocol NetworkCallDelegate {
 class NetworkCall: NSObject {
     
     static var delegate:NetworkCallDelegate?
-    static var photos = [Photo]()
     static let imageCache = NSCache<AnyObject, AnyObject>()
+    static var index = 0
+    static var photos = [Photo]()
     
     static func initializePhotoURLDownloadFromFirebase(_ url:String) {
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default).responseJSON(completionHandler: {response in
             
+            //If internet is offline, return the method so that it doesn't break the app
+            if response.error != nil {
+                print(response.error!)
+                return
+            }
+            
             //one giant dictionary...
             let results = response.result.value as! [String : Any]
-//            let test = results.keys as! String
             
-
+            //Obtain image url...
             for result in results.values{
-                
                 guard let result = result as? [String:Any] else {
                     print("The Dictionary is nil in loadUploadedUserPhotos")
                     return
@@ -42,11 +47,15 @@ class NetworkCall: NSObject {
                     photos.append(photo)
                 }
             }
-            var index = 0
-            for key in results.keys{
+            
+            //Obtain key value...
+            for key in results.keys {
                 photos[index].id = key
+                print(key)
+                print("===========")
                 index+=1
             }
+            
             self.downloadPhotos(photos)
         })
     }
@@ -83,27 +92,9 @@ class NetworkCall: NSObject {
         }
     }
     
-    static func retrieveCurrentPhotoURLS() {
+    static func downloadPhoto(_ photo:Photo) {
         
-        for photo in photos {
-            if photo.hasDownloaded == true {
-                if let imageFromCache = imageCache.object(forKey:(photo.url?.absoluteString)! as AnyObject) {
-                    photo.image = imageFromCache as! UIImage
-                    DispatchQueue.main.async {
-                        delegate?.photosFinishedDownloading(true)
-                    }
-                    continue
-                }
-            }
-            else {
-                self.downloadPhoto(photo.url!,photo)
-            }
-        }
-    }
-    
-    static func downloadPhoto(_ url:URL, _ photo:Photo) {
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        URLSession.shared.dataTask(with: photo.url!) { data, response, error in
             guard let urlData = data, error == nil else {
                 return
             }
@@ -111,7 +102,7 @@ class NetworkCall: NSObject {
             let imageToCache = UIImage(data: urlData)
             let urlKey = photo.url!.absoluteString
             imageCache.setObject(imageToCache!, forKey: urlKey as AnyObject)
-
+            
             photo.image = imageToCache!
             photo.hasDownloaded = true
             

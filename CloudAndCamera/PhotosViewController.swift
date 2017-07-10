@@ -29,11 +29,6 @@ class PhotosViewController: UIViewController {
         uploadPhotoStackView.isUserInteractionEnabled = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
-    }
-    
     func didTapUploadPhotoStackView() {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
@@ -50,18 +45,23 @@ class PhotosViewController: UIViewController {
         }
     }
     
-    func sendDataToDatabase(photoUrl: String) {
+    func sendDataToDatabase(photoUrl: String,_ photo:Photo) {
         var reference: DatabaseReference!
         reference = Database.database().reference()
         let userImagesReference = reference.child("user_images")
         let newUserImagesId = userImagesReference.childByAutoId().key
         let newUserImagesReference = userImagesReference.child(newUserImagesId)
         newUserImagesReference.setValue(["photoUrl":photoUrl], withCompletionBlock: {(error, reference) in
+            
             if error != nil {
                 ProgressHUD.showError(error!.localizedDescription)
                 return
             }
+            //set key and append new photo object
+            photo.id = newUserImagesId
+            NetworkCall.photos.append(photo)
             ProgressHUD.showSuccess("Success")
+            NetworkCall.downloadPhoto(photo)
         })
     }
     
@@ -89,9 +89,9 @@ extension PhotosViewController: UIImagePickerControllerDelegate, UINavigationCon
                 let photoUrl = metadata?.downloadURL()?.absoluteString
                 let photo = Photo()
                 let photoImageUrl = URL(string: photoUrl!)
+                //set image url...
                 photo.url = photoImageUrl
-                NetworkCall.photos.append(photo)
-                self.sendDataToDatabase(photoUrl: photoUrl!)
+                self.sendDataToDatabase(photoUrl: photoUrl!,photo)
             })
         } else {
             ProgressHUD.showError("Profile image can't be empty")
