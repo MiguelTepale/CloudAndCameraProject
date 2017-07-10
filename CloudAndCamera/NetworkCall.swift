@@ -47,15 +47,11 @@ class NetworkCall: NSObject {
                     photos.append(photo)
                 }
             }
-            
             //Obtain key value...
             for key in results.keys {
                 photos[index].id = key
-                print(key)
-                print("===========")
                 index+=1
             }
-            
             self.downloadPhotos(photos)
         })
     }
@@ -64,31 +60,22 @@ class NetworkCall: NSObject {
         
         for photo in photos {
             
-            if let imageFromCache = imageCache.object(forKey:(photo.url?.absoluteString)! as AnyObject) {
-                photo.image = imageFromCache as! UIImage
+            URLSession.shared.dataTask(with: photo.url!) { data, response, error in
+                guard let urlData = data, error == nil else {
+                    return
+                }
+                
+                let imageToCache = UIImage(data: urlData)
+                let urlKey = photo.url!.absoluteString
+                imageCache.setObject(imageToCache!, forKey: urlKey as AnyObject)
+                photo.image = imageToCache!
+                photo.hasDownloaded = true
+                
                 DispatchQueue.main.async {
                     delegate?.photosFinishedDownloading(true)
                 }
-                continue
-            }
-            else {
-                URLSession.shared.dataTask(with: photo.url!) { data, response, error in
-                    guard let urlData = data, error == nil else {
-                        return
-                    }
-                    
-                    let imageToCache = UIImage(data: urlData)
-                    let urlKey = photo.url!.absoluteString
-                    imageCache.setObject(imageToCache!, forKey: urlKey as AnyObject)
-                    photo.image = imageToCache!
-                    photo.hasDownloaded = true
-                    
-                    DispatchQueue.main.async {
-                        delegate?.photosFinishedDownloading(true)
-                    }
-                    }
-                    .resume()
-            }
+                }
+                .resume()
         }
     }
     
@@ -114,3 +101,10 @@ class NetworkCall: NSObject {
     }
     
 }
+
+//if let imageFromCache = imageCache.object(forKey:(photo.url?.absoluteString)! as AnyObject) {
+//    photo.image = imageFromCache as! UIImage
+//    DispatchQueue.main.async {
+//        delegate?.photosFinishedDownloading(true)
+//    }
+//continue

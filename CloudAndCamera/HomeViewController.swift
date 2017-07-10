@@ -36,16 +36,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
-        //Use this commented lines in case if the photos in the collectionView get removed when switching to 'PhotosViewController and back to 'HomeViewController'
-//        if appHasInitialized == true {
-//            NetworkCall.retrievePhotoURL()
-//        }
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        appHasInitialized = true
-//    }
 
     @IBAction func logoutButton(_ sender: UIBarButtonItem) {
         
@@ -84,6 +75,25 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         cell.layer.borderWidth = 0.5
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "segueToDetailVC", sender: indexPath.row)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "segueToDetailVC" {
+            let backItem = UIBarButtonItem()
+            backItem.title = "Back"
+            navigationItem.backBarButtonItem = backItem
+            
+            let currentPhoto = NetworkCall.photos[sender as! Int].image
+            let detailViewController = segue.destination as! DetailViewController
+            detailViewController.photo.image = currentPhoto
+        }
+    }
+
 }
 
 extension HomeViewController: NetworkCallDelegate {

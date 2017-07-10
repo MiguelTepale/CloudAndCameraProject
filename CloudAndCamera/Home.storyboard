@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -73,33 +75,122 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="G75-4q-ekQ" id="C8t-W6-dTW"/>
-                        <segue destination="BUk-Va-yP8" kind="show" id="VMX-gW-Uca"/>
+                        <segue destination="GHw-Wt-w1E" kind="show" identifier="segueToDetailVC" id="lPz-JW-GCu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZh-7N-mLu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3656.8000000000002" y="67.916041979010501"/>
         </scene>
-        <!--Photo Details-->
-        <scene sceneID="jgU-lG-pY8">
+        <!--Photo Detail-->
+        <scene sceneID="XXG-12-WE4">
             <objects>
-                <viewController id="BUk-Va-yP8" customClass="DetailViewController" customModule="CloudAndCamera" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Photo Detail" id="GHw-Wt-w1E" customClass="DetailViewController" customModule="CloudAndCamera" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="EgZ-l3-Peg"/>
-                        <viewControllerLayoutGuide type="bottom" id="qqK-Y5-Wxc"/>
+                        <viewControllerLayoutGuide type="top" id="uSc-uw-eUO"/>
+                        <viewControllerLayoutGuide type="bottom" id="mcV-T9-xrl"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="JKd-g4-go2">
+                    <view key="view" contentMode="scaleToFill" id="DMi-ll-d7U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xgc-Td-GSo" userLabel="Photo Image View">
+                                <rect key="frame" x="0.0" y="64" width="375" height="341.5"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rGT-FC-Ik6" userLabel="Custom Button Strip View">
+                                <rect key="frame" x="0.0" y="405" width="375" height="58"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-15" translatesAutoresizingMaskIntoConstraints="NO" id="WS5-7A-izZ" userLabel="Left Buttons Stack View">
+                                        <rect key="frame" x="8" y="4" width="120" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mK2-AV-zOC" userLabel="Like Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="p72-kN-VA8"/>
+                                                    <constraint firstAttribute="width" constant="50" id="uWe-Ce-ljJ"/>
+                                                </constraints>
+                                                <state key="normal" title="Button" image="icn_like"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNf-Px-S6x" userLabel="Number of Likes Label">
+                                                <rect key="frame" x="35" y="0.0" width="50" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUD-M2-7l8" userLabel="Like Label">
+                                                <rect key="frame" x="70" y="0.0" width="50" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xXK-Ne-lN6" userLabel="Right Buttons Stack View">
+                                        <rect key="frame" x="267" y="8" width="100" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1H-ny-Fjm" userLabel="Delete Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="Kac-8s-MYu"/>
+                                                    <constraint firstAttribute="height" constant="50" id="hjz-Gz-2aV"/>
+                                                </constraints>
+                                                <state key="normal" title="Button" image="icn_like_more"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klb-Wg-3zh" userLabel="Comment History Button">
+                                                <rect key="frame" x="50" y="0.0" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="PII-EW-poz"/>
+                                                    <constraint firstAttribute="width" constant="50" id="RER-no-1BN"/>
+                                                </constraints>
+                                                <state key="normal" title="Button" image="icn_comment"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="WS5-7A-izZ" firstAttribute="top" secondItem="rGT-FC-Ik6" secondAttribute="top" constant="4" id="M0T-J1-Je4"/>
+                                    <constraint firstItem="xXK-Ne-lN6" firstAttribute="top" secondItem="rGT-FC-Ik6" secondAttribute="top" constant="8" id="SZc-0a-rJW"/>
+                                    <constraint firstAttribute="bottom" secondItem="xXK-Ne-lN6" secondAttribute="bottom" id="TyO-YE-Jce"/>
+                                    <constraint firstAttribute="trailing" secondItem="xXK-Ne-lN6" secondAttribute="trailing" constant="8" id="ZSU-ij-NRk"/>
+                                    <constraint firstAttribute="width" secondItem="rGT-FC-Ik6" secondAttribute="height" multiplier="375:58" id="esV-pm-yY0"/>
+                                    <constraint firstItem="WS5-7A-izZ" firstAttribute="leading" secondItem="rGT-FC-Ik6" secondAttribute="leading" constant="8" id="ib5-TX-Ikx"/>
+                                    <constraint firstAttribute="bottom" secondItem="WS5-7A-izZ" secondAttribute="bottom" constant="4" id="xGK-5c-FcJ"/>
+                                </constraints>
+                            </view>
+                            <searchBar contentMode="redraw" text="Add a comment..." translatesAutoresizingMaskIntoConstraints="NO" id="dWx-bB-XwS" userLabel="Add Comment Search Bar">
+                                <rect key="frame" x="0.0" y="574" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PbH-ir-szr">
+                                <rect key="frame" x="0.0" y="463" width="375" height="111"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PbH-ir-szr" firstAttribute="top" secondItem="rGT-FC-Ik6" secondAttribute="bottom" id="6Q6-3O-irr"/>
+                            <constraint firstAttribute="trailing" secondItem="xgc-Td-GSo" secondAttribute="trailing" id="DZW-v9-A8u"/>
+                            <constraint firstItem="mcV-T9-xrl" firstAttribute="top" secondItem="dWx-bB-XwS" secondAttribute="bottom" id="Gck-mG-vsU"/>
+                            <constraint firstItem="xgc-Td-GSo" firstAttribute="height" secondItem="DMi-ll-d7U" secondAttribute="height" multiplier="0.45" constant="41.5" id="Hxb-m1-LIN"/>
+                            <constraint firstItem="PbH-ir-szr" firstAttribute="leading" secondItem="DMi-ll-d7U" secondAttribute="leading" id="QAM-Qz-km4"/>
+                            <constraint firstItem="dWx-bB-XwS" firstAttribute="leading" secondItem="DMi-ll-d7U" secondAttribute="leading" id="SlZ-C4-KjL"/>
+                            <constraint firstItem="xgc-Td-GSo" firstAttribute="top" secondItem="uSc-uw-eUO" secondAttribute="bottom" id="VBJ-gp-Hm1"/>
+                            <constraint firstItem="dWx-bB-XwS" firstAttribute="top" secondItem="PbH-ir-szr" secondAttribute="bottom" id="VOS-V7-cg0"/>
+                            <constraint firstAttribute="trailing" secondItem="rGT-FC-Ik6" secondAttribute="trailing" id="hjF-a9-PXF"/>
+                            <constraint firstItem="rGT-FC-Ik6" firstAttribute="top" secondItem="xgc-Td-GSo" secondAttribute="bottom" constant="-0.5" id="l2s-XM-dLb"/>
+                            <constraint firstAttribute="trailing" secondItem="dWx-bB-XwS" secondAttribute="trailing" id="lke-KV-lXM"/>
+                            <constraint firstItem="rGT-FC-Ik6" firstAttribute="leading" secondItem="DMi-ll-d7U" secondAttribute="leading" id="qNS-fI-zzQ"/>
+                            <constraint firstItem="xgc-Td-GSo" firstAttribute="leading" secondItem="DMi-ll-d7U" secondAttribute="leading" id="sU4-bz-rr2"/>
+                            <constraint firstAttribute="trailing" secondItem="PbH-ir-szr" secondAttribute="trailing" id="uWU-XD-wSH"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Photo Details" id="Pfl-jJ-VnU">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="EC8-Yp-pid"/>
-                    </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="xgc-Td-GSo" id="z5M-Bb-QEX"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QTJ-zB-MJr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="16Q-kk-zPs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4700" y="68"/>
+            <point key="canvasLocation" x="4652" y="67.916041979010501"/>
         </scene>
         <!--Home-->
         <scene sceneID="GKP-cD-gy5">
@@ -125,5 +216,8 @@
     </scenes>
     <resources>
         <image name="home-active" width="32" height="32"/>
+        <image name="icn_comment" width="48" height="48"/>
+        <image name="icn_like" width="48" height="48"/>
+        <image name="icn_like_more" width="48" height="48"/>
     </resources>
 </document>
