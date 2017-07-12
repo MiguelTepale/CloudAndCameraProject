@@ -11,7 +11,8 @@ import UIKit
 import Alamofire
 
 protocol NetworkCallDelegate {
-    func photosFinishedDownloading(_ didFinish:Bool)
+    func URLsFinishedDownloading()
+    func photoFinishedDownloading()
 }
 
 class NetworkCall: NSObject {
@@ -32,7 +33,9 @@ class NetworkCall: NSObject {
             }
             
             //one giant dictionary...
-            let results = response.result.value as! [String : Any]
+            guard let results = response.result.value as? [String : Any] else {
+                return
+            }
             
             //Obtain image url...
             for result in results.values{
@@ -52,14 +55,19 @@ class NetworkCall: NSObject {
                 photos[index].id = key
                 index+=1
             }
-            self.downloadPhotos(photos)
+            delegate?.URLsFinishedDownloading()
         })
     }
 
-    static func downloadPhotos(_ photos:Array<Photo>) {
+    static func downloadPhotoToCollectionView(_ photo:Photo, forImageView imageView: UIImageView) {
         
-        for photo in photos {
-            
+        if let imageFromCache = imageCache.object(forKey:(photo.url?.absoluteString)! as AnyObject) {
+            photo.image = imageFromCache as! UIImage
+            DispatchQueue.main.async {
+                imageView.image = photo.image
+            }
+        }
+        else {
             URLSession.shared.dataTask(with: photo.url!) { data, response, error in
                 guard let urlData = data, error == nil else {
                     return
@@ -72,7 +80,7 @@ class NetworkCall: NSObject {
                 photo.hasDownloaded = true
                 
                 DispatchQueue.main.async {
-                    delegate?.photosFinishedDownloading(true)
+                    imageView.image = photo.image
                 }
                 }
                 .resume()
@@ -94,17 +102,10 @@ class NetworkCall: NSObject {
             photo.hasDownloaded = true
             
             DispatchQueue.main.async {
-                delegate?.photosFinishedDownloading(true)
+                delegate?.photoFinishedDownloading()
             }
             }
             .resume()
     }
     
 }
-
-//if let imageFromCache = imageCache.object(forKey:(photo.url?.absoluteString)! as AnyObject) {
-//    photo.image = imageFromCache as! UIImage
-//    DispatchQueue.main.async {
-//        delegate?.photosFinishedDownloading(true)
-//    }
-//continue

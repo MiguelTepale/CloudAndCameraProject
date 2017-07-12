@@ -147,6 +147,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="WS5-7A-izZ" firstAttribute="top" secondItem="rGT-FC-Ik6" secondAttribute="top" constant="4" id="M0T-J1-Je4"/>
                                     <constraint firstItem="xXK-Ne-lN6" firstAttribute="top" secondItem="rGT-FC-Ik6" secondAttribute="top" constant="8" id="SZc-0a-rJW"/>
@@ -157,11 +158,11 @@
                                     <constraint firstAttribute="bottom" secondItem="WS5-7A-izZ" secondAttribute="bottom" constant="4" id="xGK-5c-FcJ"/>
                                 </constraints>
                             </view>
-                            <searchBar contentMode="redraw" text="Add a comment..." translatesAutoresizingMaskIntoConstraints="NO" id="dWx-bB-XwS" userLabel="Add Comment Search Bar">
+                            <searchBar contentMode="redraw" placeholder="Add a comment..." translatesAutoresizingMaskIntoConstraints="NO" id="dWx-bB-XwS" userLabel="Add Comment Search Bar">
                                 <rect key="frame" x="0.0" y="574" width="375" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PbH-ir-szr">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PbH-ir-szr" userLabel="Comment Table View">
                                 <rect key="frame" x="0.0" y="463" width="375" height="111"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -185,6 +186,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addCommentSeachBar" destination="dWx-bB-XwS" id="wpk-6f-FCa"/>
+                        <outlet property="customButtonStripView" destination="rGT-FC-Ik6" id="Rgf-Q9-vjI"/>
                         <outlet property="imageView" destination="xgc-Td-GSo" id="z5M-Bb-QEX"/>
                     </connections>
                 </viewController>

@@ -13,7 +13,6 @@ import Alamofire
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var appHasInitialized = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +28,7 @@ class HomeViewController: UIViewController {
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         collectionView.collectionViewLayout = layout
+        
     NetworkCall.initializePhotoURLDownloadFromFirebase("https:cloudandcamera-8f82b.firebaseio.com/user_images.json")
         
     }
@@ -67,10 +67,10 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCell ?? PhotoCell()
 //        cell.reuseIdentifier = " PhotoCell"
-
+        
         let currentPhoto = NetworkCall.photos[indexPath.row]
+        NetworkCall.downloadPhotoToCollectionView(currentPhoto, forImageView: cell.imageView)
     
-        cell.imageView.image = currentPhoto.image
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 0.5
         return cell
@@ -97,10 +97,14 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 }
 
 extension HomeViewController: NetworkCallDelegate {
-    func photosFinishedDownloading(_ didFinish: Bool) {
-        
-        if didFinish == true {
-            collectionView.reloadData()
-        }
+    func URLsFinishedDownloading() {
+        collectionView.reloadData()
     }
+    
+    func photoFinishedDownloading() {
+        //I love this method. This only updates a cell by setting a new indexPath.
+        let newPhotoIndexPath = IndexPath(row: NetworkCall.photos.count-1, section: 0);
+        collectionView.insertItems(at: [newPhotoIndexPath])
+    }
+    
 }
