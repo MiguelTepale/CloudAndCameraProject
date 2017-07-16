@@ -7,9 +7,18 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SanFranciscoDisplay-Bold.otf">
+            <string>SanFranciscoDisplay-Bold</string>
+        </array>
+        <array key="SanFranciscoDisplay-Medium.otf">
+            <string>SanFranciscoDisplay-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Moments-->
         <scene sceneID="Jvg-b8-PMT">
@@ -165,6 +174,49 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PbH-ir-szr" userLabel="Comment Table View">
                                 <rect key="frame" x="0.0" y="463" width="375" height="111"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="1Vw-Z7-hBE" customClass="CommentCell" customModule="CloudAndCamera" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Vw-Z7-hBE" id="n36-PV-Yxb">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UlM-jW-v0d" userLabel="Labels Stack View">
+                                                    <rect key="frame" x="8" y="25" width="359" height="49"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6AQ-yT-4MC" userLabel="Username">
+                                                            <rect key="frame" x="0.0" y="0.0" width="359" height="21.5"/>
+                                                            <fontDescription key="fontDescription" name="SanFranciscoDisplay-Bold" family="San Francisco Display" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Im2-Qo-ox1" userLabel="Comment">
+                                                            <rect key="frame" x="0.0" y="29.5" width="359" height="19.5"/>
+                                                            <fontDescription key="fontDescription" name="SanFranciscoDisplay-Medium" family="San Francisco Display" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="UlM-jW-v0d" secondAttribute="bottom" constant="17.5" id="0Pt-dC-keh"/>
+                                                <constraint firstItem="UlM-jW-v0d" firstAttribute="leading" secondItem="n36-PV-Yxb" secondAttribute="leadingMargin" id="UAV-Bk-UBe"/>
+                                                <constraint firstItem="UlM-jW-v0d" firstAttribute="top" secondItem="n36-PV-Yxb" secondAttribute="topMargin" constant="17" id="VTe-4q-8sx"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="UlM-jW-v0d" secondAttribute="trailing" id="yJq-Kg-i0W"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="commentLabel" destination="Im2-Qo-ox1" id="og1-HU-unR"/>
+                                            <outlet property="usernameLabel" destination="6AQ-yT-4MC" id="MqF-vx-fC1"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="GHw-Wt-w1E" id="FzE-QU-rE9"/>
+                                    <outlet property="delegate" destination="GHw-Wt-w1E" id="KHN-eB-JiM"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -187,6 +239,7 @@
                     </view>
                     <connections>
                         <outlet property="addCommentSeachBar" destination="dWx-bB-XwS" id="wpk-6f-FCa"/>
+                        <outlet property="commentsTableView" destination="PbH-ir-szr" id="ftv-Vg-1CH"/>
                         <outlet property="customButtonStripView" destination="rGT-FC-Ik6" id="Rgf-Q9-vjI"/>
                         <outlet property="imageView" destination="xgc-Td-GSo" id="z5M-Bb-QEX"/>
                     </connections>

@@ -11,8 +11,8 @@ import UIKit
 import Alamofire
 
 protocol NetworkCallDelegate {
-    func URLsFinishedDownloading()
     func photoFinishedDownloading()
+    func URLsFinishedDownloading()
 }
 
 class NetworkCall: NSObject {
@@ -58,6 +58,43 @@ class NetworkCall: NSObject {
             delegate?.URLsFinishedDownloading()
         })
     }
+    
+    static func downloadUsersFromFirebase(_ url:String) {
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default).responseJSON(completionHandler: {response in
+            
+            //If internet is offline, return the method so that it doesn't break the app
+            if response.error != nil {
+                print(response.error!)
+                return
+            }
+            
+            //one giant dictionary...
+            guard let results = response.result.value as? [String : Any] else {
+                print("Dictionary in 'downloadUsersFromFirebase' is nil")
+                return
+            }
+            
+            //Obtain username url...
+            for result in results.values{
+                
+                guard let result = result as? [String:Any] else {
+                    print("The Dictionary is nil in loadUploadedUserPhotos")
+                    return
+                }
+                if let username = result["username"] as? String {
+                    Consumer.username = username
+                }
+                //Obtain key value...
+                for key in results.keys {
+                    Consumer.id = key
+                }
+//                print(Consumer.id)
+//                print(Consumer.username)
+            }
+        })
+        
+    }
 
     static func downloadPhotoToCollectionView(_ photo:Photo, forImageView imageView: UIImageView) {
         
@@ -77,7 +114,6 @@ class NetworkCall: NSObject {
                 let urlKey = photo.url!.absoluteString
                 imageCache.setObject(imageToCache!, forKey: urlKey as AnyObject)
                 photo.image = imageToCache!
-                photo.hasDownloaded = true
                 
                 DispatchQueue.main.async {
                     imageView.image = photo.image
@@ -99,7 +135,6 @@ class NetworkCall: NSObject {
             imageCache.setObject(imageToCache!, forKey: urlKey as AnyObject)
             
             photo.image = imageToCache!
-            photo.hasDownloaded = true
             
             DispatchQueue.main.async {
                 delegate?.photoFinishedDownloading()

@@ -10,9 +10,9 @@ import Foundation
 
 class Photo: NSObject {
     
-    var url = URL(string: "https://www.google.com")
-    var image = UIImage()
-    var hasDownloaded = false
+    var comments = [Comment]()
     var id : String?
+    var image = UIImage()
+    var url = URL(string: "https://www.google.com")
     
 }

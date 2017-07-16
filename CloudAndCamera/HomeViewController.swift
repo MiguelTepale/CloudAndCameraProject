@@ -28,8 +28,8 @@ class HomeViewController: UIViewController {
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         collectionView.collectionViewLayout = layout
-        
     NetworkCall.initializePhotoURLDownloadFromFirebase("https:cloudandcamera-8f82b.firebaseio.com/user_images.json")
+        NetworkCall.downloadUsersFromFirebase("https://cloudandcamera-8f82b.firebaseio.com/users.json")
         
     }
     
@@ -46,7 +46,11 @@ class HomeViewController: UIViewController {
         } catch let logoutError {
             print(logoutError)
         }
+        //Reset properties before logging out...
+        NetworkCall.photos.removeAll()
+        NetworkCall.index = 0
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+        //Segue back to login screen
         let startStoryboard = UIStoryboard(name: "Start", bundle: nil)
         let signInVC = startStoryboard.instantiateViewController(withIdentifier: "SignInViewController")
         self.present(signInVC, animated: true, completion: nil)
@@ -88,9 +92,9 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             backItem.title = "Back"
             navigationItem.backBarButtonItem = backItem
             
-            let currentPhoto = NetworkCall.photos[sender as! Int].image
+            let currentPhoto = NetworkCall.photos[sender as! Int]
             let detailViewController = segue.destination as! DetailViewController
-            detailViewController.photo.image = currentPhoto
+            detailViewController.photo = currentPhoto
         }
     }
 
@@ -102,8 +106,8 @@ extension HomeViewController: NetworkCallDelegate {
     }
     
     func photoFinishedDownloading() {
-        //I love this method. This only updates a cell by setting a new indexPath.
-        let newPhotoIndexPath = IndexPath(row: NetworkCall.photos.count-1, section: 0);
+        //I love this method. This only updates a cell by creating new indexPath to the cell that you want to update.
+        let newPhotoIndexPath = IndexPath(row: NetworkCall.photos.count-1, section: 0)
         collectionView.insertItems(at: [newPhotoIndexPath])
     }
     

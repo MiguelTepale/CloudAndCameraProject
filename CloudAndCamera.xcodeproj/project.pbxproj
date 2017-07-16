@@ -17,6 +17,9 @@
 		8C17C6701EF20FA8000ACC87 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C17C66F1EF20FA8000ACC87 /* HomeViewController.swift */; };
 		8C17C6721EF20FBB000ACC87 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C17C6711EF20FBB000ACC87 /* PhotosViewController.swift */; };
 		8C2DCF781F0D42AB00898B53 /* NetworkCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2DCF771F0D42AB00898B53 /* NetworkCall.swift */; };
+		8C3DE37B1F1704E300D2DE94 /* Consumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3DE37A1F1704E300D2DE94 /* Consumer.swift */; };
+		8C3DE37D1F17053200D2DE94 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3DE37C1F17053200D2DE94 /* Comment.swift */; };
+		8C3DE37F1F17F59B00D2DE94 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3DE37E1F17F59B00D2DE94 /* CommentCell.swift */; };
 		8C6059931EF2E546009F77C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6059921EF2E546009F77C6 /* Main.storyboard */; };
 		8C6059971EF2EDC9009F77C6 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6059961EF2EDC9009F77C6 /* Home.storyboard */; };
 		8C6059991EF2F509009F77C6 /* Photos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6059981EF2F509009F77C6 /* Photos.storyboard */; };
@@ -26,6 +29,27 @@
 		8CA3A6481EF79FFB00CDC0EE /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3A6461EF79FFB00CDC0EE /* ProgressHUD.m */; };
 		8CA3A64A1EF9A23B00CDC0EE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3A6491EF9A23B00CDC0EE /* DetailViewController.swift */; };
 		8CA5368E1F06D9720079E0F4 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5368D1F06D9720079E0F4 /* Photo.swift */; };
+		8CC3BD751F18038800FBBBC2 /* SanFranciscoDisplay-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD601F18038800FBBBC2 /* SanFranciscoDisplay-Black.otf */; };
+		8CC3BD761F18038800FBBBC2 /* SanFranciscoDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD611F18038800FBBBC2 /* SanFranciscoDisplay-Bold.otf */; };
+		8CC3BD771F18038800FBBBC2 /* SanFranciscoDisplay-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD621F18038800FBBBC2 /* SanFranciscoDisplay-Heavy.otf */; };
+		8CC3BD781F18038800FBBBC2 /* SanFranciscoDisplay-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD631F18038800FBBBC2 /* SanFranciscoDisplay-Light.otf */; };
+		8CC3BD791F18038800FBBBC2 /* SanFranciscoDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD641F18038800FBBBC2 /* SanFranciscoDisplay-Medium.otf */; };
+		8CC3BD7A1F18038800FBBBC2 /* SanFranciscoDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD651F18038800FBBBC2 /* SanFranciscoDisplay-Regular.otf */; };
+		8CC3BD7B1F18038800FBBBC2 /* SanFranciscoDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD661F18038800FBBBC2 /* SanFranciscoDisplay-Semibold.otf */; };
+		8CC3BD7C1F18038800FBBBC2 /* SanFranciscoDisplay-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD671F18038800FBBBC2 /* SanFranciscoDisplay-Thin.otf */; };
+		8CC3BD7D1F18038800FBBBC2 /* SanFranciscoDisplay-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD681F18038800FBBBC2 /* SanFranciscoDisplay-Ultralight.otf */; };
+		8CC3BD7E1F18038800FBBBC2 /* SanFranciscoText-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD691F18038800FBBBC2 /* SanFranciscoText-Bold.otf */; };
+		8CC3BD7F1F18038800FBBBC2 /* SanFranciscoText-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD6A1F18038800FBBBC2 /* SanFranciscoText-BoldItalic.otf */; };
+		8CC3BD801F18038800FBBBC2 /* SanFranciscoText-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD6B1F18038800FBBBC2 /* SanFranciscoText-Heavy.otf */; };
+		8CC3BD811F18038800FBBBC2 /* SanFranciscoText-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD6C1F18038800FBBBC2 /* SanFranciscoText-HeavyItalic.otf */; };
+		8CC3BD821F18038800FBBBC2 /* SanFranciscoText-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD6D1F18038800FBBBC2 /* SanFranciscoText-Light.otf */; };
+		8CC3BD831F18038800FBBBC2 /* SanFranciscoText-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD6E1F18038800FBBBC2 /* SanFranciscoText-LightItalic.otf */; };
+		8CC3BD841F18038800FBBBC2 /* SanFranciscoText-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD6F1F18038800FBBBC2 /* SanFranciscoText-Medium.otf */; };
+		8CC3BD851F18038800FBBBC2 /* SanFranciscoText-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD701F18038800FBBBC2 /* SanFranciscoText-MediumItalic.otf */; };
+		8CC3BD861F18038800FBBBC2 /* SanFranciscoText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD711F18038800FBBBC2 /* SanFranciscoText-Regular.otf */; };
+		8CC3BD871F18038800FBBBC2 /* SanFranciscoText-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD721F18038800FBBBC2 /* SanFranciscoText-RegularItalic.otf */; };
+		8CC3BD881F18038800FBBBC2 /* SanFranciscoText-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD731F18038800FBBBC2 /* SanFranciscoText-Semibold.otf */; };
+		8CC3BD891F18038800FBBBC2 /* SanFranciscoText-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC3BD741F18038800FBBBC2 /* SanFranciscoText-SemiboldItalic.otf */; };
 		8CCE8F8A1F0430D4009EE492 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCE8F891F0430D4009EE492 /* PhotoCell.swift */; };
 		EA8DFF36E3958ED9713B216D /* Pods_CloudAndCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F0037C25316D2FEA70AAD8 /* Pods_CloudAndCamera.framework */; };
 /* End PBXBuildFile section */
@@ -37,7 +61,6 @@
 		8C17C6541EEF3447000ACC87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C17C65B1EEF3447000ACC87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C17C65E1EEF3447000ACC87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8C17C6601EEF3447000ACC87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C17C6661EEF57CE000ACC87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8C17C6691EF1C42B000ACC87 /* Start.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
 		8C17C66B1EF1C577000ACC87 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +68,9 @@
 		8C17C66F1EF20FA8000ACC87 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8C17C6711EF20FBB000ACC87 /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		8C2DCF771F0D42AB00898B53 /* NetworkCall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkCall.swift; sourceTree = "<group>"; };
+		8C3DE37A1F1704E300D2DE94 /* Consumer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consumer.swift; sourceTree = "<group>"; };
+		8C3DE37C1F17053200D2DE94 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		8C3DE37E1F17F59B00D2DE94 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		8C6059921EF2E546009F77C6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8C6059961EF2EDC9009F77C6 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		8C6059981EF2F509009F77C6 /* Photos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Photos.storyboard; sourceTree = "<group>"; };
@@ -56,6 +82,28 @@
 		8CA3A6461EF79FFB00CDC0EE /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		8CA3A6491EF9A23B00CDC0EE /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		8CA5368D1F06D9720079E0F4 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		8CC3BD601F18038800FBBBC2 /* SanFranciscoDisplay-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoDisplay-Black.otf"; path = "../SanFranciscoDisplay-Black.otf"; sourceTree = "<group>"; };
+		8CC3BD611F18038800FBBBC2 /* SanFranciscoDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoDisplay-Bold.otf"; path = "../SanFranciscoDisplay-Bold.otf"; sourceTree = "<group>"; };
+		8CC3BD621F18038800FBBBC2 /* SanFranciscoDisplay-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoDisplay-Heavy.otf"; path = "../SanFranciscoDisplay-Heavy.otf"; sourceTree = "<group>"; };
+		8CC3BD631F18038800FBBBC2 /* SanFranciscoDisplay-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoDisplay-Light.otf"; path = "../SanFranciscoDisplay-Light.otf"; sourceTree = "<group>"; };
+		8CC3BD641F18038800FBBBC2 /* SanFranciscoDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoDisplay-Medium.otf"; path = "../SanFranciscoDisplay-Medium.otf"; sourceTree = "<group>"; };
+		8CC3BD651F18038800FBBBC2 /* SanFranciscoDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoDisplay-Regular.otf"; path = "../SanFranciscoDisplay-Regular.otf"; sourceTree = "<group>"; };
+		8CC3BD661F18038800FBBBC2 /* SanFranciscoDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoDisplay-Semibold.otf"; path = "../SanFranciscoDisplay-Semibold.otf"; sourceTree = "<group>"; };
+		8CC3BD671F18038800FBBBC2 /* SanFranciscoDisplay-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoDisplay-Thin.otf"; path = "../SanFranciscoDisplay-Thin.otf"; sourceTree = "<group>"; };
+		8CC3BD681F18038800FBBBC2 /* SanFranciscoDisplay-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoDisplay-Ultralight.otf"; path = "../SanFranciscoDisplay-Ultralight.otf"; sourceTree = "<group>"; };
+		8CC3BD691F18038800FBBBC2 /* SanFranciscoText-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoText-Bold.otf"; path = "../SanFranciscoText-Bold.otf"; sourceTree = "<group>"; };
+		8CC3BD6A1F18038800FBBBC2 /* SanFranciscoText-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoText-BoldItalic.otf"; path = "../SanFranciscoText-BoldItalic.otf"; sourceTree = "<group>"; };
+		8CC3BD6B1F18038800FBBBC2 /* SanFranciscoText-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoText-Heavy.otf"; path = "../SanFranciscoText-Heavy.otf"; sourceTree = "<group>"; };
+		8CC3BD6C1F18038800FBBBC2 /* SanFranciscoText-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoText-HeavyItalic.otf"; path = "../SanFranciscoText-HeavyItalic.otf"; sourceTree = "<group>"; };
+		8CC3BD6D1F18038800FBBBC2 /* SanFranciscoText-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoText-Light.otf"; path = "../SanFranciscoText-Light.otf"; sourceTree = "<group>"; };
+		8CC3BD6E1F18038800FBBBC2 /* SanFranciscoText-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoText-LightItalic.otf"; path = "../SanFranciscoText-LightItalic.otf"; sourceTree = "<group>"; };
+		8CC3BD6F1F18038800FBBBC2 /* SanFranciscoText-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoText-Medium.otf"; path = "../SanFranciscoText-Medium.otf"; sourceTree = "<group>"; };
+		8CC3BD701F18038800FBBBC2 /* SanFranciscoText-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoText-MediumItalic.otf"; path = "../SanFranciscoText-MediumItalic.otf"; sourceTree = "<group>"; };
+		8CC3BD711F18038800FBBBC2 /* SanFranciscoText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoText-Regular.otf"; path = "../SanFranciscoText-Regular.otf"; sourceTree = "<group>"; };
+		8CC3BD721F18038800FBBBC2 /* SanFranciscoText-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoText-RegularItalic.otf"; path = "../SanFranciscoText-RegularItalic.otf"; sourceTree = "<group>"; };
+		8CC3BD731F18038800FBBBC2 /* SanFranciscoText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoText-Semibold.otf"; path = "../SanFranciscoText-Semibold.otf"; sourceTree = "<group>"; };
+		8CC3BD741F18038800FBBBC2 /* SanFranciscoText-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFranciscoText-SemiboldItalic.otf"; path = "../SanFranciscoText-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		8CC3BD8A1F18057200FBBBC2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CCE8F891F0430D4009EE492 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		F17E9A4AF6265010624ED6C1 /* Pods-CloudAndCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudAndCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-CloudAndCamera/Pods-CloudAndCamera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				8C17C6531EEF3447000ACC87 /* CloudAndCamera */,
+				8CC3BD311F17FB3C00FBBBC2 /* Font */,
 				8C17C6521EEF3447000ACC87 /* Products */,
 				6E49C210AD2BD1FD0F9F1C3E /* Pods */,
 				8C17C6681EF066F4000ACC87 /* Icons */,
@@ -119,7 +168,7 @@
 				8CCE8F8E1F055DD5009EE492 /* Controller */,
 				8C17C65B1EEF3447000ACC87 /* Assets.xcassets */,
 				8C17C65D1EEF3447000ACC87 /* LaunchScreen.storyboard */,
-				8C17C6601EEF3447000ACC87 /* Info.plist */,
+				8CC3BD8A1F18057200FBBBC2 /* Info.plist */,
 				8C17C6661EEF57CE000ACC87 /* GoogleService-Info.plist */,
 				8CA3A6441EF79FFB00CDC0EE /* ProgressHUD.bundle */,
 				8CA3A6451EF79FFB00CDC0EE /* ProgressHUD.h */,
@@ -159,9 +208,41 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
+		8CC3BD311F17FB3C00FBBBC2 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				8CC3BD741F18038800FBBBC2 /* SanFranciscoText-SemiboldItalic.otf */,
+				8CC3BD6B1F18038800FBBBC2 /* SanFranciscoText-Heavy.otf */,
+				8CC3BD611F18038800FBBBC2 /* SanFranciscoDisplay-Bold.otf */,
+				8CC3BD621F18038800FBBBC2 /* SanFranciscoDisplay-Heavy.otf */,
+				8CC3BD711F18038800FBBBC2 /* SanFranciscoText-Regular.otf */,
+				8CC3BD651F18038800FBBBC2 /* SanFranciscoDisplay-Regular.otf */,
+				8CC3BD671F18038800FBBBC2 /* SanFranciscoDisplay-Thin.otf */,
+				8CC3BD681F18038800FBBBC2 /* SanFranciscoDisplay-Ultralight.otf */,
+				8CC3BD601F18038800FBBBC2 /* SanFranciscoDisplay-Black.otf */,
+				8CC3BD631F18038800FBBBC2 /* SanFranciscoDisplay-Light.otf */,
+				8CC3BD661F18038800FBBBC2 /* SanFranciscoDisplay-Semibold.otf */,
+				8CC3BD6E1F18038800FBBBC2 /* SanFranciscoText-LightItalic.otf */,
+				8CC3BD6C1F18038800FBBBC2 /* SanFranciscoText-HeavyItalic.otf */,
+				8CC3BD641F18038800FBBBC2 /* SanFranciscoDisplay-Medium.otf */,
+				8CC3BD6A1F18038800FBBBC2 /* SanFranciscoText-BoldItalic.otf */,
+				8CC3BD701F18038800FBBBC2 /* SanFranciscoText-MediumItalic.otf */,
+				8CC3BD691F18038800FBBBC2 /* SanFranciscoText-Bold.otf */,
+				8CC3BD6D1F18038800FBBBC2 /* SanFranciscoText-Light.otf */,
+				8CC3BD6F1F18038800FBBBC2 /* SanFranciscoText-Medium.otf */,
+				8CC3BD721F18038800FBBBC2 /* SanFranciscoText-RegularItalic.otf */,
+				8CC3BD731F18038800FBBBC2 /* SanFranciscoText-Semibold.otf */,
+			);
+			name = Font;
+			path = CloudAndCamera;
+			sourceTree = "<group>";
+		};
 		8CCE8F8B1F055DCA009EE492 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8C3DE37E1F17F59B00D2DE94 /* CommentCell.swift */,
+				8C3DE37C1F17053200D2DE94 /* Comment.swift */,
+				8C3DE37A1F1704E300D2DE94 /* Consumer.swift */,
 				8C2DCF771F0D42AB00898B53 /* NetworkCall.swift */,
 				8CA5368D1F06D9720079E0F4 /* Photo.swift */,
 				8CCE8F891F0430D4009EE492 /* PhotoCell.swift */,
@@ -249,6 +330,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CC3BD751F18038800FBBBC2 /* SanFranciscoDisplay-Black.otf in Resources */,
+				8CC3BD761F18038800FBBBC2 /* SanFranciscoDisplay-Bold.otf in Resources */,
+				8CC3BD771F18038800FBBBC2 /* SanFranciscoDisplay-Heavy.otf in Resources */,
+				8CC3BD781F18038800FBBBC2 /* SanFranciscoDisplay-Light.otf in Resources */,
+				8CC3BD791F18038800FBBBC2 /* SanFranciscoDisplay-Medium.otf in Resources */,
+				8CC3BD7A1F18038800FBBBC2 /* SanFranciscoDisplay-Regular.otf in Resources */,
+				8CC3BD7B1F18038800FBBBC2 /* SanFranciscoDisplay-Semibold.otf in Resources */,
+				8CC3BD7C1F18038800FBBBC2 /* SanFranciscoDisplay-Thin.otf in Resources */,
+				8CC3BD7D1F18038800FBBBC2 /* SanFranciscoDisplay-Ultralight.otf in Resources */,
+				8CC3BD7E1F18038800FBBBC2 /* SanFranciscoText-Bold.otf in Resources */,
+				8CC3BD7F1F18038800FBBBC2 /* SanFranciscoText-BoldItalic.otf in Resources */,
+				8CC3BD801F18038800FBBBC2 /* SanFranciscoText-Heavy.otf in Resources */,
+				8CC3BD811F18038800FBBBC2 /* SanFranciscoText-HeavyItalic.otf in Resources */,
+				8CC3BD821F18038800FBBBC2 /* SanFranciscoText-Light.otf in Resources */,
+				8CC3BD831F18038800FBBBC2 /* SanFranciscoText-LightItalic.otf in Resources */,
+				8CC3BD841F18038800FBBBC2 /* SanFranciscoText-Medium.otf in Resources */,
+				8CC3BD851F18038800FBBBC2 /* SanFranciscoText-MediumItalic.otf in Resources */,
+				8CC3BD861F18038800FBBBC2 /* SanFranciscoText-Regular.otf in Resources */,
+				8CC3BD871F18038800FBBBC2 /* SanFranciscoText-RegularItalic.otf in Resources */,
+				8CC3BD881F18038800FBBBC2 /* SanFranciscoText-Semibold.otf in Resources */,
+				8CC3BD891F18038800FBBBC2 /* SanFranciscoText-SemiboldItalic.otf in Resources */,
 				8CA3A6471EF79FFB00CDC0EE /* ProgressHUD.bundle in Resources */,
 				8C6059991EF2F509009F77C6 /* Photos.storyboard in Resources */,
 				8C17C65F1EEF3447000ACC87 /* LaunchScreen.storyboard in Resources */,
@@ -315,9 +417,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C3DE37B1F1704E300D2DE94 /* Consumer.swift in Sources */,
 				8CA3A64A1EF9A23B00CDC0EE /* DetailViewController.swift in Sources */,
 				8C17C6551EEF3447000ACC87 /* AppDelegate.swift in Sources */,
+				8C3DE37D1F17053200D2DE94 /* Comment.swift in Sources */,
 				8C17C66E1EF1CB09000ACC87 /* SignUpViewController.swift in Sources */,
+				8C3DE37F1F17F59B00D2DE94 /* CommentCell.swift in Sources */,
 				8C17C66C1EF1C577000ACC87 /* SignInViewController.swift in Sources */,
 				8CA3A6421EF7979400CDC0EE /* Config.swift in Sources */,
 				8CA3A63E1EF63ECF00CDC0EE /* AuthService.swift in Sources */,
