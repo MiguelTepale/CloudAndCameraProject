@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
         layout.minimumLineSpacing = 0
         collectionView.collectionViewLayout = layout
     NetworkCall.initializePhotoURLDownloadFromFirebase("https:cloudandcamera-8f82b.firebaseio.com/user_images.json")
-        NetworkCall.downloadUsersFromFirebase("https://cloudandcamera-8f82b.firebaseio.com/users.json")
+        AuthService.retreiveCurrentUsername(userID: Consumer.id)
         
     }
     

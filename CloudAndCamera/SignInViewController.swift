@@ -45,6 +45,8 @@ class SignInViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if Auth.auth().currentUser != nil {
+            let currentUserID = Auth.auth().currentUser?.uid
+            Consumer.id = currentUserID!
             self.performSegue(withIdentifier: "segueToHomeVC", sender: nil)
         }
     }

@@ -18,7 +18,6 @@ class DetailViewController: UIViewController {
     
     //Properties
     var photo = Photo()
-//    let consumer = Consumer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,20 +97,24 @@ extension DetailViewController: UISearchBarDelegate {
         
         searchBar.resignFirstResponder()
         
-        //Display new comment to TableView
+        //Create comment object
         let currentComment = searchBar.text
         searchBar.text = ""
         let comment = Comment()
         comment.consumerComment = currentComment!
         comment.consumerID = Consumer.id
         comment.consumerUsername = Consumer.username
+        
+        //Send comment to Firebase
+        AuthService.sendCommentToFirebase(photo: photo, comment: comment)
+        
+        //Append comment with added firebaseID property
         photo.comments.append(comment)
-        //Now that comment has been made, add to tableView
+        
+        //Now that the comment has been initialized, add to the tableView
         let newPhotoIndexPath = IndexPath(row: photo.comments.count-1, section: 0);
         commentsTableView.insertRows(at: [newPhotoIndexPath], with: UITableViewRowAnimation.automatic)
         
-        
-        //Create a AuthService method that will send comment to current photo in Firebase
     }
     
 }

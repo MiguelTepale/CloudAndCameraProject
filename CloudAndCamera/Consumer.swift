@@ -10,7 +10,6 @@ import Foundation
 
 class Consumer: NSObject {
     
-    static let comment = String()
     static var id = String()
     static var username = String()
     

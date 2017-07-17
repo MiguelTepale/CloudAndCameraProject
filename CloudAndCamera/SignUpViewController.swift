@@ -104,6 +104,7 @@ class SignUpViewController: UIViewController {
                 
                 ProgressHUD.showSuccess("Success")
                 self.performSegue(withIdentifier: "segueToHomeVC", sender: nil)
+                
             }, onError: { (errorString) in
                 ProgressHUD.showError(errorString!)
             })

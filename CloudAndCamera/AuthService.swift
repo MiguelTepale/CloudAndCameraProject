@@ -55,4 +55,33 @@ class AuthService {
         onSuccess()
     }
     
+    static func sendCommentToFirebase(photo: Photo,comment: Comment) {
+        
+        var reference: DatabaseReference!
+        reference = Database.database().reference()
+        let photoReferenceID = reference.child("user_images").child(photo.id!).child("comments").childByAutoId().key
+        let photoReference = reference.child("user_images").child(photo.id!).child("comments").child(photoReferenceID)
+        photoReference.setValue(["comment":comment.consumerComment, "userID":comment.consumerID, "username":comment.consumerUsername])
+        comment.firebaseID = photoReferenceID
+    }
+    
+    static func retreiveCurrentUsername(userID: String) {
+        
+        var reference: DatabaseReference!
+        reference = Database.database().reference()
+        reference.child("users").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let value = snapshot.value as? [String:Any] else {
+                print("\(userID) dictionary in 'retreiveCurrentUsername' method is nil")
+                return
+            }
+            let username = value["username"] as! String
+            Consumer.username = username
+        }
+    )}
+    
+    static func downloadCommentsFromFirebase(_ photo:Photo) {
+        
+    }
+
 }
