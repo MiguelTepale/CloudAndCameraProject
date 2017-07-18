@@ -23,6 +23,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         imageView.image = photo.image
         
+        AuthService.delegate = self
         addCommentSeachBar.delegate = self
         
         let bottomLineBorder = CALayer()
@@ -39,6 +40,8 @@ class DetailViewController: UIViewController {
         let commentsTableViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapCommentsTableView))
         commentsTableView.addGestureRecognizer(commentsTableViewTapGesture)
         commentsTableView.isUserInteractionEnabled = true
+        
+        AuthService.downloadCommentsFromFirebase(photo)
         
     }
     
@@ -112,9 +115,18 @@ extension DetailViewController: UISearchBarDelegate {
         photo.comments.append(comment)
         
         //Now that the comment has been initialized, add to the tableView
-        let newPhotoIndexPath = IndexPath(row: photo.comments.count-1, section: 0);
+        let newPhotoIndexPath = IndexPath.init(row: photo.comments.count-1, section: 0)
         commentsTableView.insertRows(at: [newPhotoIndexPath], with: UITableViewRowAnimation.automatic)
+        photo.commentsHaveDownloaded = true
         
     }
+}
+
+extension DetailViewController: AuthServiceDelegate {
     
+    func commentsFinishedDownloadingFromFirebase(_ photo: Photo) {
+        
+        commentsTableView.reloadData()
+        photo.commentsHaveDownloaded = true
+    }
 }

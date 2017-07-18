@@ -11,7 +11,13 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
+protocol AuthServiceDelegate {
+    func commentsFinishedDownloadingFromFirebase(_ photo: Photo)
+}
+
 class AuthService {
+    
+    static var delegate:AuthServiceDelegate?
     
     static func signInUser(email: String, password: String, onSuccess:@escaping () -> Void, onError:@escaping (_ errorMesage:String?) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password, completion: {(user, error) in
@@ -82,6 +88,49 @@ class AuthService {
     
     static func downloadCommentsFromFirebase(_ photo:Photo) {
         
+        if photo.commentsHaveDownloaded == true {
+            return
+        }
+        
+        var reference: DatabaseReference!
+        reference = Database.database().reference()
+        reference.child("user_images").child(photo.id!).child("comments").observeSingleEvent(of:DataEventType.value, with: { (snapshot) in
+            
+            guard let results = snapshot.value as? [String:Any] else {
+                print("\(String(describing: photo.id)) dictionary does not exist in 'downloadCommentsFromFirebase'")
+                return
+            }
+            
+            for result in results.values {
+                
+                guard let result = result as? [String:Any] else {
+                    print("Result dictionary is nil in 'downloadCommentsFromFirebase'")
+                    return
+                }
+                guard let userComment = result["comment"] as? String else{
+                    print("comment doesn't exist in results.value dictionary")
+                    continue
+                }
+                guard let userID = result["userID"] as? String else{
+                    print("userID doesn't exist in results.value dictionary")
+                    continue
+                }
+                guard let username = result["username"] as? String else {
+                    print("username doesn't exist in results.value dictionary")
+                    continue
+                }
+                
+                let comment = Comment()
+                comment.consumerComment = userComment
+                comment.consumerID = userID
+                comment.consumerUsername = username
+                
+                photo.comments.append(comment)
+            }
+            DispatchQueue.main.async {
+                delegate?.commentsFinishedDownloadingFromFirebase(photo)
+            }
+        })
     }
 
 }
