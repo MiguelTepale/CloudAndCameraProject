@@ -65,8 +65,8 @@ class AuthService {
         
         var reference: DatabaseReference!
         reference = Database.database().reference()
-        let photoReferenceID = reference.child("user_images").child(photo.id!).child("comments").childByAutoId().key
-        let photoReference = reference.child("user_images").child(photo.id!).child("comments").child(photoReferenceID)
+        let photoReferenceID = reference.child("user_images").child(photo.referenceId!).child("comments").childByAutoId().key
+        let photoReference = reference.child("user_images").child(photo.referenceId!).child("comments").child(photoReferenceID)
         photoReference.setValue(["comment":comment.consumerComment, "userID":comment.consumerID, "username":comment.consumerUsername])
         comment.firebaseID = photoReferenceID
     }
@@ -94,10 +94,10 @@ class AuthService {
         
         var reference: DatabaseReference!
         reference = Database.database().reference()
-        reference.child("user_images").child(photo.id!).child("comments").observeSingleEvent(of:DataEventType.value, with: { (snapshot) in
+        reference.child("user_images").child(photo.referenceId!).child("comments").observeSingleEvent(of:DataEventType.value, with: { (snapshot) in
             
             guard let results = snapshot.value as? [String:Any] else {
-                print("\(String(describing: photo.id)) dictionary does not exist in 'downloadCommentsFromFirebase'")
+                print("\(String(describing: photo.referenceId)) dictionary does not exist in 'downloadCommentsFromFirebase'")
                 return
             }
             
@@ -132,5 +132,28 @@ class AuthService {
             }
         })
     }
-
+    
+    static func deletePhotoFromReference(photo: Photo) {
+        
+        var reference: DatabaseReference!
+        reference = Database.database().reference()
+        reference.child("user_images").child(photo.referenceId!).removeValue(completionBlock: { (error, DataBaseReference) in
+            
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+        })
+    }
+    
+    static func deletePhotoFromStorage(photo: Photo) {
+        
+        let storage = Storage.storage().reference(forURL:Config.storageRootReference).child("user_images").child(photo.storageId!)
+        storage.delete(completion: {(error) in
+            
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+        })
+    }
+    
 }

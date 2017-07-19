@@ -13,6 +13,7 @@ import Alamofire
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    var photoHasBeenDeleted = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,10 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
+        if photoHasBeenDeleted == true {
+            collectionView.reloadData()
+            photoHasBeenDeleted = false
+        }
     }
 
     @IBAction func logoutButton(_ sender: UIBarButtonItem) {
@@ -55,6 +60,7 @@ class HomeViewController: UIViewController {
         let signInVC = startStoryboard.instantiateViewController(withIdentifier: "SignInViewController")
         self.present(signInVC, animated: true, completion: nil)
     }
+    
 }
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -95,6 +101,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             let currentPhoto = NetworkCall.photos[sender as! Int]
             let detailViewController = segue.destination as! DetailViewController
             detailViewController.photo = currentPhoto
+            detailViewController.indexPathRow = sender as! Int
         }
     }
 

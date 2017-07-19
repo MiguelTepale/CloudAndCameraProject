@@ -11,8 +11,9 @@ import Foundation
 class Photo: NSObject {
     
     var comments = [Comment]()
-    var id : String?
     var image = UIImage()
+    var referenceId: String?
+    var storageId: String?
     var url = URL(string: "https://www.google.com")
     var commentsHaveDownloaded = false
     

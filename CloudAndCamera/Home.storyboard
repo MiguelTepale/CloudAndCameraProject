@@ -144,6 +144,9 @@
                                                     <constraint firstAttribute="height" constant="50" id="hjz-Gz-2aV"/>
                                                 </constraints>
                                                 <state key="normal" title="Button" image="icn_like_more"/>
+                                                <connections>
+                                                    <action selector="deletePhotoButton:" destination="GHw-Wt-w1E" eventType="touchUpInside" id="wRx-1K-WAd"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klb-Wg-3zh" userLabel="Comment History Button">
                                                 <rect key="frame" x="50" y="0.0" width="50" height="50"/>

@@ -43,16 +43,29 @@ class NetworkCall: NSObject {
                     print("The Dictionary is nil in loadUploadedUserPhotos")
                     return
                 }
-                if let urlString = result["photoUrl"] as? String {
-                    let photo = Photo()
-                    let imageURL = URL(string: urlString)
-                    photo.url = imageURL!
-                    photos.append(photo)
+                guard let urlString = result["photoUrl"] as? String else {
+                    print("result[photoUrl is nil")
+                    continue
                 }
+                guard let photoName = result["photoName"] as? String else {
+                    print("result[photoName] is nil")
+                    continue
+                }
+                
+                let photo = Photo()
+                
+                //set imageURL
+                let imageURL = URL(string: urlString)
+                photo.url = imageURL!
+                
+                //set imageName
+                photo.storageId = photoName
+                
+                photos.append(photo)
             }
             //Obtain key value...
             for key in results.keys {
-                photos[index].id = key
+                photos[index].referenceId = key
                 index+=1
             }
             delegate?.URLsFinishedDownloading()

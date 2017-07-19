@@ -18,6 +18,7 @@ class DetailViewController: UIViewController {
     
     //Properties
     var photo = Photo()
+    var indexPathRow = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +71,16 @@ class DetailViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func deletePhotoButton(_ sender: UIButton) {
+        AuthService.deletePhotoFromReference(photo: photo)
+        AuthService.deletePhotoFromStorage(photo:photo)
+        NetworkCall.photos.remove(at: indexPathRow)
+        let homeViewController = self.navigationController?.viewControllers[0] as! HomeViewController
+        homeViewController.photoHasBeenDeleted = true
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
     
 }
 

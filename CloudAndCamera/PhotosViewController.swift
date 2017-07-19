@@ -51,14 +51,14 @@ class PhotosViewController: UIViewController {
         let userImagesReference = reference.child("user_images")
         let newUserImagesId = userImagesReference.childByAutoId().key
         let newUserImagesReference = userImagesReference.child(newUserImagesId)
-        newUserImagesReference.setValue(["photoUrl":photoUrl], withCompletionBlock: {(error, reference) in
+        newUserImagesReference.setValue(["photoUrl":photoUrl, "photoName":photo.storageId!], withCompletionBlock: {(error, reference) in
             
             if error != nil {
                 ProgressHUD.showError(error!.localizedDescription)
                 return
             }
             //set key and append new photo object
-            photo.id = newUserImagesId
+            photo.referenceId = newUserImagesId
             NetworkCall.photos.append(photo)
             ProgressHUD.showSuccess("Success")
             NetworkCall.downloadPhoto(photo)
@@ -89,8 +89,9 @@ extension PhotosViewController: UIImagePickerControllerDelegate, UINavigationCon
                 let photoUrl = metadata?.downloadURL()?.absoluteString
                 let photo = Photo()
                 let photoImageUrl = URL(string: photoUrl!)
-                //set image url...
+                //set image url and storageID...
                 photo.url = photoImageUrl
+                photo.storageId = photoIdString
                 self.sendDataToDatabase(photoUrl: photoUrl!,photo)
             })
         } else {
