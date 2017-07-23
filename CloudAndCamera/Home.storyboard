@@ -119,6 +119,9 @@
                                                     <constraint firstAttribute="width" constant="50" id="uWe-Ce-ljJ"/>
                                                 </constraints>
                                                 <state key="normal" title="Button" image="icn_like"/>
+                                                <connections>
+                                                    <action selector="likePhotoButton:" destination="GHw-Wt-w1E" eventType="touchUpInside" id="1dU-KP-Ki2"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNf-Px-S6x" userLabel="Number of Likes Label">
                                                 <rect key="frame" x="35" y="0.0" width="50" height="50"/>
@@ -145,7 +148,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button" image="icn_like_more"/>
                                                 <connections>
-                                                    <action selector="deletePhotoButton:" destination="GHw-Wt-w1E" eventType="touchUpInside" id="wRx-1K-WAd"/>
+                                                    <action selector="deletePhotoButton:" destination="GHw-Wt-w1E" eventType="touchUpInside" id="d0K-w1-Jza"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klb-Wg-3zh" userLabel="Comment History Button">
@@ -245,6 +248,7 @@
                         <outlet property="commentsTableView" destination="PbH-ir-szr" id="ftv-Vg-1CH"/>
                         <outlet property="customButtonStripView" destination="rGT-FC-Ik6" id="Rgf-Q9-vjI"/>
                         <outlet property="imageView" destination="xgc-Td-GSo" id="z5M-Bb-QEX"/>
+                        <outlet property="numberOfLikesLabel" destination="dNf-Px-S6x" id="G9p-pn-mM3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16Q-kk-zPs" userLabel="First Responder" sceneMemberID="firstResponder"/>

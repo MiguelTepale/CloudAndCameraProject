@@ -83,6 +83,9 @@ class SignInViewController: UIViewController {
         ProgressHUD.show("Logging in...", interaction: false)
         AuthService.signInUser(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
             ProgressHUD.showSuccess("Success")
+            //Add uid to consumerID
+            let currentUserID = Auth.auth().currentUser?.uid
+            Consumer.id = currentUserID!
             self.performSegue(withIdentifier: "segueToHomeVC", sender: nil)
         }, onError: { error in
             ProgressHUD.showError(error!)

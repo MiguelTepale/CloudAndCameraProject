@@ -86,6 +86,30 @@ class AuthService {
         }
     )}
     
+    static func setLikesLabel(photo: Photo, likesLabel:UILabel) {
+        
+        var reference: DatabaseReference!
+        reference = Database.database().reference()
+        reference.child("user_images").child(photo.referenceId!).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let value = snapshot.value as? [String:Any] else {
+                print("\(photo.referenceId!) dictionary in 'retreiveCurrentUsername' method is nil")
+                return
+            }
+            
+            guard let likes = value["likes"] as? Int else {
+                print("likes is nil")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                let number = String(likes)
+                likesLabel.text = number
+            }
+        }
+    )
+    }
+    
     static func downloadCommentsFromFirebase(_ photo:Photo) {
         
         if photo.commentsHaveDownloaded == true {

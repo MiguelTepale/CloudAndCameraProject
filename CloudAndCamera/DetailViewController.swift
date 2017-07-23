@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UIAlertViewDelegate {
 
     //UI Elements
     @IBOutlet weak var customButtonStripView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var addCommentSeachBar: UISearchBar!
     @IBOutlet weak var commentsTableView: UITableView!
+    @IBOutlet weak var numberOfLikesLabel: UILabel!
     
     //Properties
     var photo = Photo()
@@ -43,6 +46,7 @@ class DetailViewController: UIViewController {
         commentsTableView.isUserInteractionEnabled = true
         
         AuthService.downloadCommentsFromFirebase(photo)
+        AuthService.setLikesLabel(photo: photo, likesLabel: numberOfLikesLabel)
         
     }
     
@@ -72,36 +76,84 @@ class DetailViewController: UIViewController {
         }
     }
     
-    @IBAction func deletePhotoButton(_ sender: UIButton) {
-        AuthService.deletePhotoFromReference(photo: photo)
-        AuthService.deletePhotoFromStorage(photo:photo)
-        NetworkCall.photos.remove(at: indexPathRow)
-        let homeViewController = self.navigationController?.viewControllers[0] as! HomeViewController
-        homeViewController.photoHasBeenDeleted = true
-        navigationController?.popToRootViewController(animated: true)
+    @IBAction func likePhotoButton(_ sender: UIButton) {
+        
+        var reference: DatabaseReference!
+        reference = Database.database().reference().child("user_images").child(photo.referenceId!)
+        
+        reference.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+            
+            if var post = currentData.value as? [String : AnyObject], let uid = Auth.auth().currentUser?.uid {
+                
+                var usersWhoLiked: Dictionary<String, Bool>
+                
+                usersWhoLiked = post["usersWhoLiked"] as? [String : Bool] ?? [:]
+                var likes = post["likes"] as? Int ?? 0
+                if let _ = usersWhoLiked[uid] {
+                    // Unstar the post and remove self from stars
+                    likes -= 1
+                    usersWhoLiked.removeValue(forKey: uid)
+                    DispatchQueue.main.async {
+                        let number = String(likes)
+                        self.numberOfLikesLabel.text = number
+                    }
+                } else {
+                    // Star the post and add self to stars
+                    likes += 1
+                    usersWhoLiked[uid] = true
+                    DispatchQueue.main.async {
+                        let number = String(likes)
+                        self.numberOfLikesLabel.text = number
+                    }
+                }
+                post["likes"] = likes as AnyObject?
+                post["usersWhoLiked"] = usersWhoLiked as AnyObject?
+                
+                // Set value and report transaction success
+                currentData.value = post
+                
+                return TransactionResult.success(withValue: currentData)
+            }
+            return TransactionResult.success(withValue: currentData)
+        }) { (error, committed, snapshot) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+        
     }
     
+    @IBAction func deletePhotoButton(_ sender: UIButton) {
+
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let deletePhotoAction = UIAlertAction(title: "Delete Photo", style:.destructive, handler: {(alert: UIAlertAction!) -> Void
+            in
+            
+            AuthService.deletePhotoFromReference(photo: self.photo)
+            AuthService.deletePhotoFromStorage(photo:self.photo)
+            NetworkCall.photos.remove(at: self.indexPathRow)
+            let homeViewController = self.navigationController?.viewControllers[0] as! HomeViewController
+            homeViewController.photoHasBeenDeleted = true
+            self.navigationController?.popToRootViewController(animated: true)
+            })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(deletePhotoAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
     
 }
 
-extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
+extension DetailViewController: AuthServiceDelegate {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return photo.comments.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func commentsFinishedDownloadingFromFirebase(_ photo: Photo) {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CommentCell
-
-        cell.usernameLabel.text = photo.comments[indexPath.row].consumerUsername
-        cell.commentLabel.text = photo.comments[indexPath.row].consumerComment
-        
-        return cell
+        commentsTableView.reloadData()
+        photo.commentsHaveDownloaded = true
     }
 }
 
@@ -133,11 +185,23 @@ extension DetailViewController: UISearchBarDelegate {
     }
 }
 
-extension DetailViewController: AuthServiceDelegate {
+extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func commentsFinishedDownloadingFromFirebase(_ photo: Photo) {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return photo.comments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        commentsTableView.reloadData()
-        photo.commentsHaveDownloaded = true
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CommentCell
+
+        cell.usernameLabel.text = photo.comments[indexPath.row].consumerUsername
+        cell.commentLabel.text = photo.comments[indexPath.row].consumerComment
+        
+        return cell
     }
 }

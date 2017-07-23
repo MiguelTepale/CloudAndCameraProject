@@ -30,6 +30,7 @@ class HomeViewController: UIViewController {
         layout.minimumLineSpacing = 0
         collectionView.collectionViewLayout = layout
     NetworkCall.initializePhotoURLDownloadFromFirebase("https:cloudandcamera-8f82b.firebaseio.com/user_images.json")
+        //Remember you need to retrieve consumerID before it goes into the method or else it'll be nil because you're passing nil!
         AuthService.retreiveCurrentUsername(userID: Consumer.id)
         
     }
@@ -48,9 +49,15 @@ class HomeViewController: UIViewController {
         print(Auth.auth().currentUser!)
         do {
             try Auth.auth().signOut()
-        } catch let logoutError {
-            print(logoutError)
         }
+        catch let logoutError {
+            print(logoutError)
+            return
+        }
+        
+        //Empty NSCache!
+        NetworkCall.imageCache.removeAllObjects()
+        
         //Reset properties before logging out...
         NetworkCall.photos.removeAll()
         NetworkCall.index = 0
