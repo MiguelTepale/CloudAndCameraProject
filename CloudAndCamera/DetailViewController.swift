@@ -133,6 +133,25 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
         
     }
     
+    @IBAction func commentsButton(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "segueToTableVC", sender: nil)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "segueToTableVC" {
+            let backItem = UIBarButtonItem()
+            backItem.title = "Back"
+            navigationItem.backBarButtonItem = backItem
+            
+            let tableViewController = segue.destination as! TableViewController
+            tableViewController.photo = photo
+        }
+        
+    }
+    
     @IBAction func deletePhotoButton(_ sender: UIButton) {
 
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
