@@ -86,7 +86,7 @@ class AuthService {
         }
     )}
     
-    static func setLikesLabel(photo: Photo, likesLabel:UILabel) {
+    static func setLikesCounterLabel(photo: Photo, likesLabel:UILabel) {
         
         var reference: DatabaseReference!
         reference = Database.database().reference()
@@ -108,6 +108,43 @@ class AuthService {
             }
         }
     )
+    }
+    
+    static func setLikeButton(photo: Photo, consumerID: String, likeButton: UIButton) {
+        
+        var reference: DatabaseReference!
+        reference = Database.database().reference()
+        reference.child("user_images").child(photo.referenceId!).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let value = snapshot.value as? [String:Any] else {
+                print("\(photo.referenceId!) dictionary in 'retreiveCurrentUsername' method is nil")
+                return
+            }
+            
+            guard let usersWhoLiked = value["usersWhoLiked"] as? [String:Bool] else {
+                print("'usersWhoLiked' is nil")
+                return
+            }
+            
+            guard let currentUser = usersWhoLiked[consumerID] else {
+                print("'currentUser' value is nil")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                if currentUser == true {
+                    if let image = UIImage(named: "activeSkinny") {
+                        likeButton.setImage(image, for:.normal)
+                    }
+                }
+                else {
+                    if let image = UIImage(named: "icn_like") {
+                        likeButton.setImage(image, for:.normal)
+                    }
+                }
+            }
+            
+        })
     }
     
     static func downloadCommentsFromFirebase(_ photo:Photo) {

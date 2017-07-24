@@ -18,6 +18,7 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
     @IBOutlet weak var addCommentSeachBar: UISearchBar!
     @IBOutlet weak var commentsTableView: UITableView!
     @IBOutlet weak var numberOfLikesLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
     
     //Properties
     var photo = Photo()
@@ -46,7 +47,8 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
         commentsTableView.isUserInteractionEnabled = true
         
         AuthService.downloadCommentsFromFirebase(photo)
-        AuthService.setLikesLabel(photo: photo, likesLabel: numberOfLikesLabel)
+        AuthService.setLikesCounterLabel(photo: photo, likesLabel: numberOfLikesLabel)
+        AuthService.setLikeButton(photo: photo, consumerID: Consumer.id, likeButton: likeButton)
         
     }
     
@@ -93,7 +95,11 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
                     // Unstar the post and remove self from stars
                     likes -= 1
                     usersWhoLiked.removeValue(forKey: uid)
+                    //Update UI
                     DispatchQueue.main.async {
+                        if let image = UIImage(named: "icn_like") {
+                            self.likeButton.setImage(image, for:.normal)
+                        }
                         let number = String(likes)
                         self.numberOfLikesLabel.text = number
                     }
@@ -101,7 +107,11 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
                     // Star the post and add self to stars
                     likes += 1
                     usersWhoLiked[uid] = true
+                    //Update UI
                     DispatchQueue.main.async {
+                        if let image = UIImage(named: "activeSkinny") {
+                            self.likeButton.setImage(image, for:.normal)
+                        }
                         let number = String(likes)
                         self.numberOfLikesLabel.text = number
                     }
