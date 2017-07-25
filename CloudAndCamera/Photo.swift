@@ -16,5 +16,7 @@ class Photo: NSObject {
     var storageId: String?
     var url = URL(string: "https://www.google.com")
     var commentsHaveDownloaded = false
+    var totalLikes: String?
+    var hasBeenLiked = Bool()
     
 }

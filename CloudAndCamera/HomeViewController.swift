@@ -29,9 +29,6 @@ class HomeViewController: UIViewController {
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         collectionView.collectionViewLayout = layout
-    NetworkCall.initializePhotoURLDownloadFromFirebase("https:cloudandcamera-8f82b.firebaseio.com/user_images.json")
-        //Remember you need to retrieve consumerID before it goes into the method or else the program will crash because you're passing nil!
-        AuthService.retreiveCurrentUsername(userID: Consumer.id)
         
     }
     
@@ -106,6 +103,10 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             navigationItem.backBarButtonItem = backItem
             
             let currentPhoto = NetworkCall.photos[sender as! Int]
+            AuthService.downloadCommentsFromFirebase(currentPhoto)
+            AuthService.retrieveTotalNumberOfLikes(photo: currentPhoto)
+            AuthService.setLikeButton(photo: currentPhoto, consumerID: Consumer.id)
+            
             let detailViewController = segue.destination as! DetailViewController
             detailViewController.photo = currentPhoto
             detailViewController.indexPathRow = sender as! Int

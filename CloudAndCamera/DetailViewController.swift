@@ -46,26 +46,6 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
         commentsTableView.addGestureRecognizer(commentsTableViewTapGesture)
         commentsTableView.isUserInteractionEnabled = true
         
-        AuthService.downloadCommentsFromFirebase(photo)
-        AuthService.setLikesCounterLabel(photo: photo, onSuccess: {(number) in
-            self.numberOfLikesLabel.text = number!
-        }, onError: {(error) in
-            print(error!)
-        })
-        AuthService.setLikeButton(photo: photo, consumerID: Consumer.id, onSuccess: {(hasLiked) in
-            if hasLiked == true {
-                if let image = UIImage(named: "activeSkinny") {
-                    self.likeButton.setImage(image, for:.normal)
-                }
-            }
-            else {
-                if let image = UIImage(named: "icn_like") {
-                    self.likeButton.setImage(image, for:.normal)
-                }
-            }
-        }, onError: {(error) in
-            print(error!)
-        })
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -112,25 +92,27 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
                     likes -= 1
                     usersWhoLiked.removeValue(forKey: uid)
                     //Update UI
-//                    DispatchQueue.main.async {
+                    DispatchQueue.main.async {
                         if let image = UIImage(named: "icn_like") {
                             self.likeButton.setImage(image, for:.normal)
                         }
                         let number = String(likes)
-                        self.numberOfLikesLabel.text = number
-//                    }
+                        self.photo.totalLikes = number
+                        self.numberOfLikesLabel.text = self.photo.totalLikes
+                    }
                 } else {
                     // Star the like and add self to like
                     likes += 1
                     usersWhoLiked[uid] = true
                     //Update UI
-//                    DispatchQueue.main.async {
+                    DispatchQueue.main.async {
                         if let image = UIImage(named: "activeSkinny") {
                             self.likeButton.setImage(image, for:.normal)
                         }
                         let number = String(likes)
-                        self.numberOfLikesLabel.text = number
-//                    }
+                        self.photo.totalLikes = number
+                        self.numberOfLikesLabel.text = self.photo.totalLikes
+                    }
                 }
                 post["likes"] = likes as AnyObject?
                 post["usersWhoLiked"] = usersWhoLiked as AnyObject?
@@ -196,9 +178,18 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
 extension DetailViewController: AuthServiceDelegate {
     
     func commentsFinishedDownloadingFromFirebase(_ photo: Photo) {
-        
         commentsTableView.reloadData()
         photo.commentsHaveDownloaded = true
+    }
+    func totalLikesRetrieved(photo: Photo) {
+        numberOfLikesLabel.text = photo.totalLikes
+    }
+    func likeButtonWillSet(photo: Photo) {
+        if photo.hasBeenLiked == true {
+            if let image = UIImage(named: "activeSkinny") {
+                self.likeButton.setImage(image, for:.normal)
+            }
+        }
     }
 }
 

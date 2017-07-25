@@ -40,13 +40,18 @@ class SignInViewController: UIViewController {
         signInButton.isEnabled = false
         
         handleTextField()
+        
+        let currentUserID = Auth.auth().currentUser?.uid
+        if currentUserID != nil {
+        Consumer.id = currentUserID!
+    NetworkCall.initializePhotoURLDownloadFromFirebase("https:cloudandcamera-8f82b.firebaseio.com/user_images.json")
+            AuthService.retreiveCurrentUsername(userID: Consumer.id)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if Auth.auth().currentUser != nil {
-            let currentUserID = Auth.auth().currentUser?.uid
-            Consumer.id = currentUserID!
             self.performSegue(withIdentifier: "segueToHomeVC", sender: nil)
         }
     }
@@ -83,9 +88,12 @@ class SignInViewController: UIViewController {
         ProgressHUD.show("Logging in...", interaction: false)
         AuthService.signInUser(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
             ProgressHUD.showSuccess("Success")
-            //Add uid to consumerID
+            //Add uid to consumerID and execute methods
             let currentUserID = Auth.auth().currentUser?.uid
             Consumer.id = currentUserID!
+     NetworkCall.initializePhotoURLDownloadFromFirebase("https:cloudandcamera-8f82b.firebaseio.com/user_images.json")
+            AuthService.retreiveCurrentUsername(userID: Consumer.id)
+            //
             self.performSegue(withIdentifier: "segueToHomeVC", sender: nil)
         }, onError: { error in
             ProgressHUD.showError(error!)
