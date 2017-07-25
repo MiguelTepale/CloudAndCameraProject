@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
         layout.minimumLineSpacing = 0
         collectionView.collectionViewLayout = layout
     NetworkCall.initializePhotoURLDownloadFromFirebase("https:cloudandcamera-8f82b.firebaseio.com/user_images.json")
-        //Remember you need to retrieve consumerID before it goes into the method or else it'll be nil because you're passing nil!
+        //Remember you need to retrieve consumerID before it goes into the method or else the program will crash because you're passing nil!
         AuthService.retreiveCurrentUsername(userID: Consumer.id)
         
     }

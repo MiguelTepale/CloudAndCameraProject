@@ -47,9 +47,25 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
         commentsTableView.isUserInteractionEnabled = true
         
         AuthService.downloadCommentsFromFirebase(photo)
-        AuthService.setLikesCounterLabel(photo: photo, likesLabel: numberOfLikesLabel)
-        AuthService.setLikeButton(photo: photo, consumerID: Consumer.id, likeButton: likeButton)
-        
+        AuthService.setLikesCounterLabel(photo: photo, onSuccess: {(number) in
+            self.numberOfLikesLabel.text = number!
+        }, onError: {(error) in
+            print(error!)
+        })
+        AuthService.setLikeButton(photo: photo, consumerID: Consumer.id, onSuccess: {(hasLiked) in
+            if hasLiked == true {
+                if let image = UIImage(named: "activeSkinny") {
+                    self.likeButton.setImage(image, for:.normal)
+                }
+            }
+            else {
+                if let image = UIImage(named: "icn_like") {
+                    self.likeButton.setImage(image, for:.normal)
+                }
+            }
+        }, onError: {(error) in
+            print(error!)
+        })
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -92,29 +108,29 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
                 usersWhoLiked = post["usersWhoLiked"] as? [String : Bool] ?? [:]
                 var likes = post["likes"] as? Int ?? 0
                 if let _ = usersWhoLiked[uid] {
-                    // Unstar the post and remove self from stars
+                    // Unstar the like and remove self from like
                     likes -= 1
                     usersWhoLiked.removeValue(forKey: uid)
                     //Update UI
-                    DispatchQueue.main.async {
+//                    DispatchQueue.main.async {
                         if let image = UIImage(named: "icn_like") {
                             self.likeButton.setImage(image, for:.normal)
                         }
                         let number = String(likes)
                         self.numberOfLikesLabel.text = number
-                    }
+//                    }
                 } else {
-                    // Star the post and add self to stars
+                    // Star the like and add self to like
                     likes += 1
                     usersWhoLiked[uid] = true
                     //Update UI
-                    DispatchQueue.main.async {
+//                    DispatchQueue.main.async {
                         if let image = UIImage(named: "activeSkinny") {
                             self.likeButton.setImage(image, for:.normal)
                         }
                         let number = String(likes)
                         self.numberOfLikesLabel.text = number
-                    }
+//                    }
                 }
                 post["likes"] = likes as AnyObject?
                 post["usersWhoLiked"] = usersWhoLiked as AnyObject?
