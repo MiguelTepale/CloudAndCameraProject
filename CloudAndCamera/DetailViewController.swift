@@ -76,6 +76,39 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
     
     @IBAction func likePhotoButton(_ sender: UIButton) {
         
+        //Update button and like label..
+        if photo.hasBeenLiked == true {
+            let totalLikesString = photo.totalLikes
+            var currentCount = Int(totalLikesString!)
+            currentCount! -= 1
+            guard let newTotalLikesString = currentCount else {
+                print("'newTotalLikesString' is nil")
+                return
+            }
+            photo.totalLikes = String(newTotalLikesString)
+            photo.hasBeenLiked = false
+            if let image = UIImage(named: "icn_like") {
+                likeButton.setImage(image, for:.normal)
+            }
+            numberOfLikesLabel.text = photo.totalLikes
+        }
+        else {
+            let totalLikesString = photo.totalLikes
+            var currentCount = Int(totalLikesString!)
+            currentCount! += 1
+            guard let newTotalLikesString = currentCount else {
+                print("'newTotalLikesString' is nil")
+                return
+            }
+            photo.totalLikes = String(newTotalLikesString)
+            photo.hasBeenLiked = true
+            if let image = UIImage(named: "activeSkinny") {
+                likeButton.setImage(image, for:.normal)
+            }
+            numberOfLikesLabel.text = photo.totalLikes
+        }
+    
+        //Send changes to Firebase..
         var reference: DatabaseReference!
         reference = Database.database().reference().child("user_images").child(photo.referenceId!)
         
@@ -91,28 +124,10 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
                     // Unstar the like and remove self from like
                     likes -= 1
                     usersWhoLiked.removeValue(forKey: uid)
-                    //Update UI
-                    DispatchQueue.main.async {
-                        if let image = UIImage(named: "icn_like") {
-                            self.likeButton.setImage(image, for:.normal)
-                        }
-                        let number = String(likes)
-                        self.photo.totalLikes = number
-                        self.numberOfLikesLabel.text = self.photo.totalLikes
-                    }
                 } else {
                     // Star the like and add self to like
                     likes += 1
                     usersWhoLiked[uid] = true
-                    //Update UI
-                    DispatchQueue.main.async {
-                        if let image = UIImage(named: "activeSkinny") {
-                            self.likeButton.setImage(image, for:.normal)
-                        }
-                        let number = String(likes)
-                        self.photo.totalLikes = number
-                        self.numberOfLikesLabel.text = self.photo.totalLikes
-                    }
                 }
                 post["likes"] = likes as AnyObject?
                 post["usersWhoLiked"] = usersWhoLiked as AnyObject?
@@ -128,7 +143,6 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
                 print(error.localizedDescription)
             }
         }
-        
     }
     
     @IBAction func commentsButton(_ sender: UIButton) {
