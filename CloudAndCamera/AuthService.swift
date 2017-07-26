@@ -70,7 +70,7 @@ class AuthService {
         reference = Database.database().reference()
         let photoReferenceID = reference.child("user_images").child(photo.referenceId!).child("comments").childByAutoId().key
         let photoReference = reference.child("user_images").child(photo.referenceId!).child("comments").child(photoReferenceID)
-        photoReference.setValue(["comment":comment.consumerComment, "userID":comment.consumerID, "username":comment.consumerUsername])
+        photoReference.setValue(["comment":comment.consumerComment,"username":comment.consumerUsername])
         comment.firebaseID = photoReferenceID
     }
     
@@ -87,7 +87,7 @@ class AuthService {
             let username = value["username"] as! String
             Consumer.username = username
         }
-    )}
+        )}
     
     static func retrieveTotalNumberOfLikes(photo: Photo) {
         
@@ -96,7 +96,7 @@ class AuthService {
         reference.child("user_images").child(photo.referenceId!).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let value = snapshot.value as? [String:Any] else {
-                print("\(photo.referenceId!) dictionary in 'retreiveCurrentUsername' method is nil")
+                print("\(photo.referenceId!) dictionary in 'retrieveTotalNumberOfLikes' method is nil")
                 return
             }
             
@@ -112,13 +112,13 @@ class AuthService {
         }
     )}
     
-    static func setLikeButton(photo: Photo, consumerID: String) {
+    static func setLikeButton(photo: Photo, userID: String) {
         var reference: DatabaseReference!
         reference = Database.database().reference()
         reference.child("user_images").child(photo.referenceId!).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let value = snapshot.value as? [String:Any] else {
-                print("\(photo.referenceId!) dictionary in 'retreiveCurrentUsername' method is nil")
+                print("\(photo.referenceId!) dictionary in 'setLikeButton' method is nil")
                 return
             }
             
@@ -127,7 +127,7 @@ class AuthService {
                 return
             }
             
-            guard let liked = usersWhoLiked[consumerID] else {
+            guard let liked = usersWhoLiked[userID] else {
                 print("'liked' value is nil")
                 return
             }
@@ -163,10 +163,7 @@ class AuthService {
                     print("comment doesn't exist in results.value dictionary")
                     continue
                 }
-                guard let userID = result["userID"] as? String else{
-                    print("userID doesn't exist in results.value dictionary")
-                    continue
-                }
+
                 guard let username = result["username"] as? String else {
                     print("username doesn't exist in results.value dictionary")
                     continue
@@ -174,7 +171,6 @@ class AuthService {
                 
                 let comment = Comment()
                 comment.consumerComment = userComment
-                comment.consumerID = userID
                 comment.consumerUsername = username
                 
                 photo.comments.append(comment)

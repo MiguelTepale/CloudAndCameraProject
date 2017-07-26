@@ -103,9 +103,10 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             navigationItem.backBarButtonItem = backItem
             
             let currentPhoto = NetworkCall.photos[sender as! Int]
+            let currentUserID = Auth.auth().currentUser?.uid
             AuthService.downloadCommentsFromFirebase(currentPhoto)
             AuthService.retrieveTotalNumberOfLikes(photo: currentPhoto)
-            AuthService.setLikeButton(photo: currentPhoto, consumerID: Consumer.id)
+            AuthService.setLikeButton(photo: currentPhoto, userID: currentUserID!)
             
             let detailViewController = segue.destination as! DetailViewController
             detailViewController.photo = currentPhoto

@@ -11,12 +11,12 @@ import Foundation
 class Photo: NSObject {
     
     var comments = [Comment]()
+    var commentsHaveDownloaded = false
+    var hasBeenLiked = Bool()
     var image = UIImage()
     var referenceId: String?
     var storageId: String?
-    var url = URL(string: "https://www.google.com")
-    var commentsHaveDownloaded = false
     var totalLikes: String?
-    var hasBeenLiked = Bool()
+    var url = URL(string: "https://www.google.com")
     
 }

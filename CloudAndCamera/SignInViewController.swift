@@ -8,7 +8,6 @@
 
 import UIKit
 import FirebaseAuth
-
 import FirebaseStorage
 
 class SignInViewController: UIViewController {
@@ -43,9 +42,8 @@ class SignInViewController: UIViewController {
         
         let currentUserID = Auth.auth().currentUser?.uid
         if currentUserID != nil {
-        Consumer.id = currentUserID!
     NetworkCall.initializePhotoURLDownloadFromFirebase("https:cloudandcamera-8f82b.firebaseio.com/user_images.json")
-            AuthService.retreiveCurrentUsername(userID: Consumer.id)
+            AuthService.retreiveCurrentUsername(userID: currentUserID!)
         }
     }
     
@@ -88,11 +86,10 @@ class SignInViewController: UIViewController {
         ProgressHUD.show("Logging in...", interaction: false)
         AuthService.signInUser(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
             ProgressHUD.showSuccess("Success")
-            //Add uid to consumerID and execute methods
+            //Add uid and execute methods
             let currentUserID = Auth.auth().currentUser?.uid
-            Consumer.id = currentUserID!
      NetworkCall.initializePhotoURLDownloadFromFirebase("https:cloudandcamera-8f82b.firebaseio.com/user_images.json")
-            AuthService.retreiveCurrentUsername(userID: Consumer.id)
+            AuthService.retreiveCurrentUsername(userID: currentUserID!)
             //
             self.performSegue(withIdentifier: "segueToHomeVC", sender: nil)
         }, onError: { error in

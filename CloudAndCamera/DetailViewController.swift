@@ -21,8 +21,8 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
     @IBOutlet weak var likeButton: UIButton!
     
     //Properties
-    var photo = Photo()
     var indexPathRow = 0
+    var photo = Photo()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,9 +74,8 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
         }
     }
     
-    @IBAction func likePhotoButton(_ sender: UIButton) {
+    func updateUIElements() {
         
-        //Update button and like label..
         if photo.hasBeenLiked == true {
             let totalLikesString = photo.totalLikes
             var currentCount = Int(totalLikesString!)
@@ -107,6 +106,12 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
             }
             numberOfLikesLabel.text = photo.totalLikes
         }
+    }
+    
+    @IBAction func likePhotoButton(_ sender: UIButton) {
+        
+        //Update button and like label..
+        updateUIElements()
     
         //Send changes to Firebase..
         var reference: DatabaseReference!
@@ -168,8 +173,7 @@ class DetailViewController: UIViewController, UIAlertViewDelegate {
 
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let deletePhotoAction = UIAlertAction(title: "Delete Photo", style:.destructive, handler: {(alert: UIAlertAction!) -> Void
-            in
+        let deletePhotoAction = UIAlertAction(title: "Delete Photo", style:.destructive, handler: {(alert: UIAlertAction!) -> Void in
             
             AuthService.deletePhotoFromReference(photo: self.photo)
             AuthService.deletePhotoFromStorage(photo:self.photo)
@@ -218,13 +222,12 @@ extension DetailViewController: UISearchBarDelegate {
         searchBar.text = ""
         let comment = Comment()
         comment.consumerComment = currentComment!
-        comment.consumerID = Consumer.id
         comment.consumerUsername = Consumer.username
         
-        //Send comment to Firebase
+        //Send comment to Firebase and add firebaseID
         AuthService.sendCommentToFirebase(photo: photo, comment: comment)
         
-        //Append comment with added firebaseID property
+        //Append comment to comments array
         photo.comments.append(comment)
         
         //Now that the comment has been initialized, add to the tableView

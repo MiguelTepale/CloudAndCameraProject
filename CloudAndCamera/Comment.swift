@@ -11,7 +11,6 @@ import Foundation
 class Comment: NSObject {
     
     var consumerComment = String()
-    var consumerID = String()
     var consumerUsername = String()
     var firebaseID = String()
     
