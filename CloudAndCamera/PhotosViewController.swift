@@ -51,7 +51,7 @@ class PhotosViewController: UIViewController {
         let userImagesReference = reference.child("user_images")
         let newUserImagesId = userImagesReference.childByAutoId().key
         let newUserImagesReference = userImagesReference.child(newUserImagesId)
-        newUserImagesReference.setValue(["photoUrl":photoUrl, "photoName":photo.storageId!], withCompletionBlock: {(error, reference) in
+        newUserImagesReference.setValue(["photoUrl":photoUrl, "photoName":photo.storageId!,"likes":Int(0)], withCompletionBlock: {(error, reference) in
             
             if error != nil {
                 ProgressHUD.showError(error!.localizedDescription)
@@ -89,7 +89,7 @@ extension PhotosViewController: UIImagePickerControllerDelegate, UINavigationCon
                 let photoUrl = metadata?.downloadURL()?.absoluteString
                 let photo = Photo()
                 let photoImageUrl = URL(string: photoUrl!)
-                //set image url and storageID...
+                //Prep photo to be sent to firebase. Set image url,storageID,photolike...
                 photo.url = photoImageUrl
                 photo.storageId = photoIdString
                 self.sendDataToDatabase(photoUrl: photoUrl!,photo)
